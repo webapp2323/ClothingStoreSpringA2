@@ -1,4 +1,4 @@
-package org.example.clothingstorespring.entity;
+package org.example.clothingstorespring.model;
 
 public enum SleeveType {
         SHORT,  // Короткий рукав

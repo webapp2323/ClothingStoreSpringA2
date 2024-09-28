@@ -1,7 +1,7 @@
 package org.example.clothingstorespring.controller;
 
 
-import org.example.clothingstorespring.entity.Pants;
+import org.example.clothingstorespring.model.Pants;
 import org.example.clothingstorespring.service.PantsService;
 import org.springframework.web.bind.annotation.*;
 

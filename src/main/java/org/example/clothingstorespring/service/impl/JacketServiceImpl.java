@@ -1,6 +1,6 @@
 package org.example.clothingstorespring.service.impl;
 
-import org.example.clothingstorespring.entity.Jacket;
+import org.example.clothingstorespring.model.Jacket;
 import org.example.clothingstorespring.repository.JacketRepository;
 import org.example.clothingstorespring.service.JacketService;
 import org.springframework.stereotype.Service;

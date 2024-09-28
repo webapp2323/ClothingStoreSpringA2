@@ -1,8 +1,7 @@
 package org.example.clothingstorespring.repository;
 
 
-import org.example.clothingstorespring.entity.Pants;
-import org.example.clothingstorespring.entity.Shirt;
+import org.example.clothingstorespring.model.Pants;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

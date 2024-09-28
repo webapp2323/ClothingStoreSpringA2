@@ -1,4 +1,4 @@
-package org.example.clothingstorespring.entity;
+package org.example.clothingstorespring.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -8,15 +8,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class Pants {
+public class Jacket {
 
     @Id
     private Long id;
 
+    private String name;
     private String brand;
     private String size;
-    private Long price;
-    private String material;
-    private PantsType type;
-    private String name;
+   private Long price;
+   private String material;
+   private boolean hasHood;
+
+
 }

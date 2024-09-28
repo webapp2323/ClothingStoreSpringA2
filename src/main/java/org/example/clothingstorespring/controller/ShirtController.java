@@ -1,21 +1,33 @@
 package org.example.clothingstorespring.controller;
 
 
-import org.example.clothingstorespring.entity.Shirt;
-import org.example.clothingstorespring.service.ShirtService;
+import lombok.AllArgsConstructor;
+import org.example.clothingstorespring.model.Shirt;
+//import org.example.clothingstorespring.service.ShirtService;
+//import org.example.clothingstorespring.service.ShirtService;
+import org.example.clothingstorespring.service.impl.ShirtServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/shirts")
+@RequestMapping("/api/v1/shirts")
+@AllArgsConstructor(onConstructor_ = {@Autowired})
 public class ShirtController {
 
-    private final ShirtService service;
 
-    public ShirtController(ShirtService service) {
-        this.service = service;
-    }
+    private final ShirtServiceImpl service;
+
+//    public ShirtController(ShirtService service) {
+//        this.service = service;
+//    }
+
+//    @GetMapping
+//    public List<Shirt> getAllShirts() {
+//        return service.getAllShirts();
+//    }
 
     @GetMapping
     public List<Shirt> getAllShirts() {
@@ -32,14 +44,15 @@ public class ShirtController {
         return service.getShirtById(id);
     }
 
-    @PutMapping("/update")
-    public void updateShirt(@RequestBody Shirt shirt) {
+    @PutMapping("/update_shirt")
+    public void updateShirt(Shirt shirt) {
         service.updateShirt(shirt);
     }
 
-    @DeleteMapping("/delete")
-    public void deleteShirt(@RequestBody Shirt shirt) {
-        service.deleteShirt(shirt);
+    @DeleteMapping("/delete_shirt/{id}")
+    public void deleteShirt(@PathVariable Shirt id) {
+        service.deleteShirt(id);
     }
 }
+
 

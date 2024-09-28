@@ -1,12 +1,9 @@
 package org.example.clothingstorespring.service.impl;
 
 
-import org.example.clothingstorespring.entity.Pants;
-import org.example.clothingstorespring.entity.Shirt;
+import org.example.clothingstorespring.model.Pants;
 import org.example.clothingstorespring.repository.PantsRepository;
-import org.example.clothingstorespring.repository.ShirtRepository;
 import org.example.clothingstorespring.service.PantsService;
-import org.example.clothingstorespring.service.ShirtService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
