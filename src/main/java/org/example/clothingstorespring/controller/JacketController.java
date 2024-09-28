@@ -4,14 +4,12 @@ package org.example.clothingstorespring.controller;
 import org.example.clothingstorespring.entity.Jacket;
 import org.example.clothingstorespring.service.JacketService;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/jackets")
 public class JacketController {
 
     private final JacketService service;
@@ -20,14 +18,31 @@ public class JacketController {
         this.service = service;
     }
 
-    @GetMapping("/jackets")
-    public List<Jacket> jackets() {
+    @GetMapping
+    public List<Jacket> getAllJackets() {
         return service.getAllJacket();
     }
-    @PostMapping("/addJacket")
+
+    @PostMapping("/add")
     public void addJacket(@RequestBody Jacket jacket) {
         service.addJacket(jacket);
     }
 
+    @GetMapping("/{id}")
+    public Jacket getJacketById(@PathVariable Long id) {
+        return service.getJacketById(id);
+    }
 
+    @PutMapping("/update")
+    public void updateJacket(@RequestBody Jacket jacket) {
+        service.updateJacket(jacket);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteJacket(@RequestBody Jacket jacket) {
+        service.deleteJacket(jacket);
+    }
 }
+
+
+

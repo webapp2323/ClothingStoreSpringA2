@@ -3,14 +3,12 @@ package org.example.clothingstorespring.controller;
 
 import org.example.clothingstorespring.entity.Shirt;
 import org.example.clothingstorespring.service.ShirtService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/shirts")
 public class ShirtController {
 
     private final ShirtService service;
@@ -19,14 +17,29 @@ public class ShirtController {
         this.service = service;
     }
 
-    @GetMapping("/shirts")
-    public List<Shirt> shirts() {
+    @GetMapping
+    public List<Shirt> getAllShirts() {
         return service.getAllShirts();
     }
-    @PostMapping("/addShirt")
+
+    @PostMapping("/add")
     public void addShirt(@RequestBody Shirt shirt) {
         service.addShirt(shirt);
     }
 
+    @GetMapping("/{id}")
+    public Shirt getShirtById(@PathVariable Long id) {
+        return service.getShirtById(id);
+    }
 
+    @PutMapping("/update")
+    public void updateShirt(@RequestBody Shirt shirt) {
+        service.updateShirt(shirt);
+    }
+
+    @DeleteMapping("/delete")
+    public void deleteShirt(@RequestBody Shirt shirt) {
+        service.deleteShirt(shirt);
+    }
 }
+
