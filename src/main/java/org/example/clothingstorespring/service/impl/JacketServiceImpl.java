@@ -18,18 +18,12 @@ public class JacketServiceImpl implements JacketService {
 
 
     @Override
-    public Jacket addJacket(Jacket jacket) {
-        return jacketRepository.save(jacket);
+    public void addJacket(Jacket jacket) {
+        jacketRepository.save(jacket);
     }
 
     @Override
     public List<Jacket> getAllJacket() {
-        return List.of();
-    }
-
-
-    @Override
-    public List<Jacket> getAllJackets() {
         return jacketRepository.findAll();
     }
 
