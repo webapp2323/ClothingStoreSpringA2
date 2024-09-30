@@ -1,47 +1,43 @@
 package org.example.clothingstorespring.service.impl;
 
-
-import org.example.clothingstorespring.entity.Shirt;
+import lombok.AllArgsConstructor;
+import org.example.clothingstorespring.model.Shirt;
 import org.example.clothingstorespring.repository.ShirtRepository;
 import org.example.clothingstorespring.service.ShirtService;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
+@AllArgsConstructor
+@Primary
 public class ShirtServiceImpl implements ShirtService {
-
     private final ShirtRepository shirtRepository;
-
-    public ShirtServiceImpl(ShirtRepository shirtRepository) {
-        this.shirtRepository = shirtRepository;
-    }
-
-    @Override
-    public void addShirt(Shirt shirt) {
-        shirtRepository.save(shirt);
-    }
 
     @Override
     public List<Shirt> getAllShirts() {
-        return shirtRepository.findAll();
+        return shirtRepository.findAll(); // Використання готового методу JPA
     }
 
     @Override
-    public Shirt getShirtById(Long id) {
-        return shirtRepository.findById(id).orElse(null);
+    public Optional<Shirt> getShirtById(Long id) {
+        return shirtRepository.findById(id); // Використання готового методу JPA
     }
 
     @Override
-    public void updateShirt(Shirt shirt) {
-        shirtRepository.save(shirt);
+    public Shirt addShirt(Shirt shirt) {
+        return shirtRepository.save(shirt); // Використання готового методу JPA
+    }
+
+    @Override
+    public Shirt updateShirt(Shirt shirt) {
+        return shirtRepository.save(shirt); // Використання готового методу JPA для оновлення
     }
 
     @Override
     public void deleteShirt(Shirt shirt) {
-        shirtRepository.delete(shirt);
+        shirtRepository.delete(shirt); // Використання готового методу JPA
     }
-
-
-
 }

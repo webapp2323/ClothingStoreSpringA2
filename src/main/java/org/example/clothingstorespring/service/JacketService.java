@@ -2,7 +2,7 @@ package org.example.clothingstorespring.service;
 
 
 
-import org.example.clothingstorespring.entity.Jacket;
+import org.example.clothingstorespring.model.Jacket;
 
 import java.util.List;
 

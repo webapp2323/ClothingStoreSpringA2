@@ -1,45 +1,52 @@
 package org.example.clothingstorespring.controller;
 
 
-import org.example.clothingstorespring.entity.Shirt;
+import lombok.AllArgsConstructor;
+import org.example.clothingstorespring.model.Shirt;
+//import org.example.clothingstorespring.service.ShirtService;
+//import org.example.clothingstorespring.service.ShirtService;
 import org.example.clothingstorespring.service.ShirtService;
+import org.example.clothingstorespring.service.impl.ShirtServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
 
 @RestController
-@RequestMapping("/shirts")
+@RequestMapping("/api/v1/shirts")
+@AllArgsConstructor(onConstructor_ = {@Autowired})
 public class ShirtController {
 
-    private final ShirtService service;
 
-    public ShirtController(ShirtService service) {
-        this.service = service;
-    }
+    @Autowired
+    private ShirtService shirtService;
 
     @GetMapping
     public List<Shirt> getAllShirts() {
-        return service.getAllShirts();
+        return shirtService.getAllShirts();
     }
 
     @PostMapping("/add")
     public void addShirt(@RequestBody Shirt shirt) {
-        service.addShirt(shirt);
+        shirtService.addShirt(shirt);
     }
 
     @GetMapping("/{id}")
-    public Shirt getShirtById(@PathVariable Long id) {
-        return service.getShirtById(id);
+    public Optional<Shirt> getShirtById(@PathVariable Long id) {
+        return shirtService.getShirtById(id);
     }
 
-    @PutMapping("/update")
+    @PutMapping("/update_shirt")
     public void updateShirt(@RequestBody Shirt shirt) {
-        service.updateShirt(shirt);
+        shirtService.updateShirt(shirt);
     }
 
     @DeleteMapping("/delete")
     public void deleteShirt(@RequestBody Shirt shirt) {
-        service.deleteShirt(shirt);
+        shirtService.deleteShirt(shirt);
     }
 }
+
 
