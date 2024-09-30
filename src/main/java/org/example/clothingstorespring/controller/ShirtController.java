@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import org.example.clothingstorespring.model.Shirt;
 //import org.example.clothingstorespring.service.ShirtService;
 //import org.example.clothingstorespring.service.ShirtService;
+import org.example.clothingstorespring.service.ShirtService;
 import org.example.clothingstorespring.service.impl.ShirtServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -18,40 +20,32 @@ import java.util.List;
 public class ShirtController {
 
 
-    private final ShirtServiceImpl service;
-
-//    public ShirtController(ShirtService service) {
-//        this.service = service;
-//    }
-
-//    @GetMapping
-//    public List<Shirt> getAllShirts() {
-//        return service.getAllShirts();
-//    }
+    @Autowired
+    private ShirtService shirtService;
 
     @GetMapping
     public List<Shirt> getAllShirts() {
-        return service.getAllShirts();
+        return shirtService.getAllShirts();
     }
 
     @PostMapping("/add")
     public void addShirt(@RequestBody Shirt shirt) {
-        service.addShirt(shirt);
+        shirtService.addShirt(shirt);
     }
 
     @GetMapping("/{id}")
-    public Shirt getShirtById(@PathVariable Long id) {
-        return service.getShirtById(id);
+    public Optional<Shirt> getShirtById(@PathVariable Long id) {
+        return shirtService.getShirtById(id);
     }
 
     @PutMapping("/update_shirt")
-    public void updateShirt(Shirt shirt) {
-        service.updateShirt(shirt);
+    public void updateShirt(@RequestBody Shirt shirt) {
+        shirtService.updateShirt(shirt);
     }
 
-    @DeleteMapping("/delete_shirt/{id}")
-    public void deleteShirt(@PathVariable Shirt id) {
-        service.deleteShirt(id);
+    @DeleteMapping("/delete")
+    public void deleteShirt(@RequestBody Shirt shirt) {
+        shirtService.deleteShirt(shirt);
     }
 }
 
