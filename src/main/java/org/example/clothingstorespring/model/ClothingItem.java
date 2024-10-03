@@ -22,5 +22,4 @@ public abstract class ClothingItem {
     @Column(name = "price_$", unique = true)
     private BigDecimal price;
 
-
 }
