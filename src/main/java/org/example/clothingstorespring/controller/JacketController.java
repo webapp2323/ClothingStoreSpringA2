@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/jackets")
 public class JacketController {
 
-    private final JacketService service;
+    private final JacketService service;// Сервис для управления бизнес-логикой
 
     public JacketController(JacketService service) {
         this.service = service;
@@ -22,8 +22,23 @@ public class JacketController {
     public List<Jacket> getAllJackets() {
         return service.getAllJacket();
     }
-
+    //контроллер которий обрабативает запроси на добавление новой куртки
     @PostMapping("/add")
+    //Аннотация @RequestBody:  указывает, что данные из тела HTTP-запроса будут автоматически преобразованы в объект Jacket. Когда клиент (например, Postman) отправляет POST-запрос с JSON-данными, Spring Boot использует Jackson  для десериализации JSON в объект Java.
+
+    //JSON-запрос который  отправляется через Postman:
+    //POST http://localhost:8080/jackets/add
+    //{
+    //"name": "{{$randomFileName}}",
+    //"brand": "{{$randomUserName}}",
+    //"size": "S",
+    //"price": {{$randomPrice}},
+    //"material": "COTTON",
+    //"hasHood" :true
+    //    }
+    //Jackson: Это библиотека, которая обычно используется в Spring Boot для преобразования JSON в Java-объекты. Она автоматически связывает поля JSON с соответствующими полями класса Jacket.
+    //поле name в JSON будет сопоставлено с полем name в классе public abstract class ClothingItem ...
+    //После того как объект Jacket будет создан, контроллер передаст его в сервис, который сохранит его в базе данных:
     public void addJacket(@RequestBody Jacket jacket) {
         service.addJacket(jacket);
     }
