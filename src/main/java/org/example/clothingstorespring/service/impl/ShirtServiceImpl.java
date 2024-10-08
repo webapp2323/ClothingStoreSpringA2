@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-@Primary
+
 public class ShirtServiceImpl implements ShirtService {
     private final ShirtRepository shirtRepository;
 

@@ -1,22 +1,17 @@
 package org.example.clothingstorespring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Entity
 @Getter
 @Setter
-public class Pants {
+@Entity
+public class Pants extends ClothingItem {
 
-    @Id
-    private Long id;
+    @Enumerated(EnumType.STRING)
+    private PantsSize size;
 
-    private String brand;
-    private String size;
-    private Long price;
-    private String material;
-    private PantsType type;
-    private String name;
+    @Enumerated(EnumType.STRING)
+    private PantsMaterial material;
 }

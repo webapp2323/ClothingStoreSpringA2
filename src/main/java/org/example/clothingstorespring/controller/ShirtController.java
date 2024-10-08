@@ -3,13 +3,9 @@ package org.example.clothingstorespring.controller;
 
 import lombok.AllArgsConstructor;
 import org.example.clothingstorespring.model.Shirt;
-//import org.example.clothingstorespring.service.ShirtService;
-//import org.example.clothingstorespring.service.ShirtService;
 import org.example.clothingstorespring.service.ShirtService;
-import org.example.clothingstorespring.service.impl.ShirtServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
