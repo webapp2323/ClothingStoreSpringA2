@@ -12,5 +12,5 @@ public class Shirt extends ClothingItem {
     private SleeveType sleeveType;
 
     @Enumerated(EnumType.STRING)
-    private ShirtSize size;
+    private Size size;
 }

@@ -15,11 +15,8 @@ public abstract class ClothingItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Генерація ID
     private Long id;
-
     private String name;
     private String brand;
-
-    @Column(name = "price_$", unique = true)
     private BigDecimal price;
 
 }

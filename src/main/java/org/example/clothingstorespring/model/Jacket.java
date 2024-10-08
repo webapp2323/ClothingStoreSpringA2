@@ -10,10 +10,10 @@ import lombok.Setter;
 public class Jacket extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
-    private JacketSize size; // Заміна на Enum для розміру
+    private Size size; // Заміна на Enum для розміру
 
     @Enumerated(EnumType.STRING)
-    private JacketMaterial material; // Заміна на Enum для матеріалу
+    private Material material; // Заміна на Enum для матеріалу
 
     private boolean hasHood;
 }

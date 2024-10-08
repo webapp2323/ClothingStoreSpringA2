@@ -10,8 +10,8 @@ import lombok.Setter;
 public class Pants extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
-    private PantsSize size;
+    private Size size;
 
     @Enumerated(EnumType.STRING)
-    private PantsMaterial material;
+    private Material material;
 }

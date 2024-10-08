@@ -1,6 +1,6 @@
 package org.example.clothingstorespring.model;
 
-public enum ShirtSize {
+public enum Size {
     XS,
     S,
     M,
