@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Shirt")
+@Table(name = "shirt")
 public class Shirt extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
