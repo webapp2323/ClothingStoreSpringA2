@@ -11,17 +11,18 @@ import lombok.ToString;
 public class Shirt extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
-    private Sleeve_Type sleeve_Type;
+    private SleeveType sleeveType;
 
     @Enumerated(EnumType.STRING)
     private Size size;
 
-    private String material;
+    @Enumerated(EnumType.STRING)
+    private Material material;
 
     @Override
     public String toString() {
         return super.toString() +
-                " sleeve_Type=" + sleeve_Type +
+                " sleeve_Type=" + sleeveType +
                 ", size=" + size +
                 ", material='" + material + '\'' +
                 '}';
