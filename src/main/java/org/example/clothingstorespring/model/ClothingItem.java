@@ -24,9 +24,11 @@ public abstract class ClothingItem {
     @Override
     public String toString() {
         return "{" +
-                "name='" + name + '\'' +
+                "id=" + id + // Добавьте идентификатор
+                ", name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
-                ", price=" + price +',' ;
+                ", price=" + price +
+                '}';
     }
 }
 /*

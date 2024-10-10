@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ShirtRepository extends JpaRepository<Shirt, Long> {
-    // JPA автоматично надає методи для CRUD
+
 }
 
 
