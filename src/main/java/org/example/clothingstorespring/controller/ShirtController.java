@@ -1,12 +1,14 @@
 package org.example.clothingstorespring.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
 import org.example.clothingstorespring.model.Shirt;
 import org.example.clothingstorespring.service.ShirtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,7 @@ import java.util.Optional;
 }
  */
 @Slf4j
+@ToString
 @RestController
 @RequestMapping("/api/v1/shirts")
 @AllArgsConstructor(onConstructor_ = {@Autowired})
@@ -35,14 +38,15 @@ public class ShirtController {
         log.info("Returning {} shirts", shirts.size());
         return ResponseEntity.ok(shirts);
     }
+
     @PostMapping("/add")
     public ResponseEntity<Void> addShirt(@RequestBody Shirt shirt) {
-        // Логируем информацию о полученной рубашке
-        log.info("Received request to add shirt: {}", shirt);
+        log.info("Received request to add shirt: {}", shirt); // Логируем всю информацию о рубашке
 
         try {
             shirtService.addShirt(shirt); // Добавление рубашки в сервис
             log.info("Shirt successfully added: {}", shirt); // Логируем успешное добавление
+
             log.info("200 OK: Request successful. The server has responded as required.");
             return ResponseEntity.ok().build(); // Возвращаем 200 OK
         } catch (Exception e) {
@@ -50,7 +54,12 @@ public class ShirtController {
             return ResponseEntity.status(500).build(); // Возвращаем 500 Internal Server Error
         }
     }
+/*
+2024-10-10 07:24:41 - Received request to add shirt: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
+2024-10-10 07:24:41 - Shirt successfully added: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
+2024-10-10 07:24:41 - 200 OK: Request successful. The server has responded as required.
 
+ */
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Shirt>> getShirtById(@PathVariable Long id) {
         log.info("Received request to get shirt by id: {}", id);
@@ -77,6 +86,7 @@ public class ShirtController {
         }
     }
 
+
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteShirt(@RequestBody Shirt shirt) {
         log.info("Received request to delete shirt: {}", shirt);
@@ -88,5 +98,9 @@ public class ShirtController {
             log.error("Error deleting shirt: {}", e.getMessage());
             return ResponseEntity.status(500).build();
         }
+
+
     }
+
 }
+
