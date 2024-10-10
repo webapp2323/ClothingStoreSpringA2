@@ -1,13 +1,14 @@
 package org.example.clothingstorespring.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Getter
-@Setter
+
+@Data
 @MappedSuperclass
 //@MappedSuperclass: Анотація вказує, що клас ClothingItem не буде мати власної таблиці в базі даних, але його поля будуть успадковані інші класами.
 public abstract class ClothingItem {

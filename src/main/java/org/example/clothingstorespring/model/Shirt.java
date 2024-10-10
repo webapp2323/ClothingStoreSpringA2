@@ -9,8 +9,10 @@ import lombok.Data;
 public class Shirt extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
-    private SleeveType sleeveType;
+    private Sleeve_Type sleeve_Type;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) 
     private Size size;
+
+    private String material;
 }
