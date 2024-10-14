@@ -1,7 +1,13 @@
 
 
+--changeset Owl:create_enum_types
+CREATE TYPE sleeve_type_enum AS ENUM ('SHORT', 'LONG', 'SLEEVELESS');
+CREATE TYPE size_enum AS ENUM ('S', 'M', 'L', 'XL');
+CREATE TYPE material_enum AS ENUM ('COTTON', 'LEATHER', 'POLYESTER', 'NYLON', 'DENIM', 'WOOL', 'FLEECE', 'SUEDE', 'LINEN', 'VINYL');
+
+
 --changeset Owl:create_table_shirt
-CREATE TABLE shirt (
+CREATE TABLE IF NOT EXISTS shirt  (
                        id SERIAL PRIMARY KEY,
                        name VARCHAR(255) NOT NULL,
                        brand VARCHAR(255) NOT NULL,
@@ -11,10 +17,11 @@ CREATE TABLE shirt (
                        sleeve_type sleeve_type_enum NOT NULL
 );
 
+--liquibase update
+
 --liquibase formatted sql
 
 --changeset Owl:insert_initial_data_shirt
-
 INSERT INTO Shirt (name, brand, price, sleeve_type, size, material) VALUES
                                                                         ('Casual Shirt', 'Brand A', 29.99, 'LONG', 'M', 'COTTON'),
                                                                         ('Formal Shirt', 'Brand B', 49.99, 'SHORT', 'L', 'POLYESTER'),
