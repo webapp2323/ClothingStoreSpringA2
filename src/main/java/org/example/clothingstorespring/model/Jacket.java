@@ -15,5 +15,8 @@ public class Jacket extends ClothingItem {
     @Enumerated(EnumType.STRING)
     private Material material; // Заміна на Enum для матеріалу
 
+    @Enumerated(EnumType.STRING)
+    private Material color;
+
     private boolean hasHood;
 }

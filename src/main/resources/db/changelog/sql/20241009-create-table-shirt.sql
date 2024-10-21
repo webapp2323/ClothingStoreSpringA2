@@ -5,6 +5,8 @@ CREATE TYPE sleeve_type_enum AS ENUM ('SHORT', 'LONG', 'SLEEVELESS');
 CREATE TYPE size_enum AS ENUM ('S', 'M', 'L', 'XL');
 CREATE TYPE material_enum AS ENUM ('COTTON', 'LEATHER', 'POLYESTER', 'NYLON', 'DENIM', 'WOOL', 'FLEECE', 'SUEDE', 'LINEN', 'VINYL');
 
+CREATE TYPE color_enum AS ENUM ('Red', 'Blue', 'Green', 'Black', 'White', 'Yellow', 'Brown', 'Gray', 'Pink');
+
 
 --changeset Owl:create_table_shirt
 CREATE TABLE IF NOT EXISTS shirt  (
