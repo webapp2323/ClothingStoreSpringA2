@@ -65,10 +65,8 @@ public class ShirtController {
             log.info("Shirt found: {}", shirt);
         }
 
- ex4
         log.info("Found {} shirts for the provided ids: {}", Optional.of(Optional.of(shirts.size())), ids);
  
- master
         return ResponseEntity.ok(shirts);
     }
 
