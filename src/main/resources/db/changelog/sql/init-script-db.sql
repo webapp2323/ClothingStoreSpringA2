@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Owl:init_script
+--changeset Owl:init_script_DB
 --preconditions onFail:MARK_RAN
 --precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_name = 'jacket';
 
@@ -58,6 +58,8 @@ INSERT INTO shirt (name, brand, price, sleeve_type, size, material) VALUES
                                                                         ('Graphic Tee', 'Brand H', 15.99, 'SLEEVELESS', 'L', 'COTTON'),
                                                                         ('Classic Polo', 'Brand I', 32.50, 'SHORT', 'XL', 'POLYESTER'),
                                                                         ('Evening Dress Shirt', 'Brand J', 67.49, 'LONG', 'L', 'VINYL');
+
+
 CREATE TABLE IF NOT EXISTS store (
                                      id SERIAL PRIMARY KEY,
                                      name VARCHAR(255) NOT NULL UNIQUE, -- Название магазина должно быть уникальным и не NULL

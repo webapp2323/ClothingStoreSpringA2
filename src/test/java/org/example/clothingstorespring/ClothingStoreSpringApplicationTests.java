@@ -12,11 +12,11 @@ class ClothingStoreSpringApplicationTests {
     }
 
 
-        public static void main(String[] args) {
-            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-            String rawPassword = "test";
-            String encodedPassword = passwordEncoder.encode(rawPassword);
-            System.out.println(encodedPassword);
+//        public static void main(String[] args) {
+//            BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//            String rawPassword = "testt";
+//            String encodedPassword = passwordEncoder.encode(rawPassword);
+//            System.out.println(encodedPassword);
 
     }
-}
+
