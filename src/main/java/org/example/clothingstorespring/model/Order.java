@@ -33,6 +33,7 @@ public class Order {
     @Column(nullable = false)
     private LocalDateTime orderDate;
 
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Delivery> deliveries = new ArrayList<>();
 
 }

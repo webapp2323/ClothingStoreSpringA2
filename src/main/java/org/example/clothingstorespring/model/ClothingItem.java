@@ -31,8 +31,4 @@ public abstract class ClothingItem {
                 '}';
     }
 }
-/*
-2024-10-10 07:23:30 - Received request to add shirt: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-2024-10-10 07:23:30 - Shirt successfully added: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-2024-10-10 07:23:30 - 200 OK: Request successful. The server has responded as required.
- */
+

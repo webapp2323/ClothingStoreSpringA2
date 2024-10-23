@@ -1,12 +1,3 @@
 databaseChangeLog:
   - include:
-      - file: db/changelog/sql/init-script-db.sql
-
-  - include:
-      - file: db/changelog/sql/jac-create-table.sql
-
-  - include:
-      - file: db/changelog/sql/jac-size-fix.sql
-
-  - include:
-      - file: db/changelog/sql/jac-color-fix.sql
+      - file: db/changelog/sql/datainitialaizer.sql

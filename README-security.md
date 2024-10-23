@@ -16,3 +16,5 @@ https://www.youtube.com/watch?v=6u93yNqUJ9o
 ## Каскадність
 5) https://javarush.com/quests/lectures/questhibernate.level13.lecture05
 6 )https://www.baeldung.com/jpa-cascade-types
+
+### [Liquibase + Spring Boot ➡ Настройка и написание миграций](https://www.youtube.com/watch?v=prLt2LHbA8o&t=722s)
