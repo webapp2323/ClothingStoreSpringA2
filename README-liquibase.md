@@ -35,3 +35,5 @@ logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
 
 - include:
     - file: db/changelog/sql/jac-color-fix.sql
+-   - include:
+  - file: db/changelog/sql/datainitialaizer.sql

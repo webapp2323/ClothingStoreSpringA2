@@ -2,6 +2,7 @@
 
 --changeset Owl:init_script_DB
 --preconditions onFail:MARK_RAN
+
 --precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_name = 'jacket';
 
 CREATE TABLE IF NOT EXISTS jacket (
@@ -125,3 +126,19 @@ INSERT INTO "order" (user_id, store_id, total) VALUES
                                                    (1, 1, 279.98),
                                                    (2, 2, 149.99),
                                                    (3, 3, 89.99);
+
+
+
+CREATE TABLE IF NOT EXISTS deliveries (
+                                          id SERIAL PRIMARY KEY,
+                                          order_id INT NOT NULL,
+                                          delivery_address VARCHAR(255),
+                                          delivery_date DATE,
+                                          delivery_type VARCHAR(50),
+                                          status VARCHAR(50),
+                                          FOREIGN KEY (order_id) REFERENCES "order"(id)
+);
+    INSERT INTO deliveries (order_id, delivery_address, delivery_date, delivery_type, status) VALUES
+    (1, '123 Main St, Cityville', '2024-10-23', 'STANDARD', 'PENDING'),
+    (2, '456 Elm St, Townsville', '2024-10-24', 'EXPRESS', 'IN_TRANSIT'),
+    (3, '789 Maple St, Villagetown', '2024-10-25', 'STANDARD', 'DELIVERED');

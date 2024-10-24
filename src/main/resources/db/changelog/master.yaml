@@ -1,3 +1,5 @@
 databaseChangeLog:
+
+
   - include:
-      - file: db/changelog/sql/datainitialaizer.sql
+      - file: db/changelog/sql/init-script-db.sql
