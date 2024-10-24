@@ -23,6 +23,8 @@ logging.file.name=logs/application.log
 logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
 -------------------
+for CONSOLE:
+
 ALTER TABLE jacket
 DROP CONSTRAINT jacket_color_check;
 ALTER TABLE jacket
@@ -71,3 +73,13 @@ INSERT INTO "order" (user_id, store_id, total, order_date) VALUES
 (1, 1, 279.98, '2024-10-21'),
 (2, 2, 149.99, '2024-10-22'),
 (3, 3, 89.99, '2024-10-23');
+--------------
+ALTER TABLE deliveries
+DROP CONSTRAINT deliveries_status_check;
+
+INSERT INTO deliveries (order_id, delivery_address, delivery_date, delivery_type, status) VALUES
+(1, '101 First St, NewCity', '2024-10-30', 'EXPRESS', 'SCHEDULED'),
+(2, '202 Second St, OldTown', '2024-10-31', 'STANDARD', 'PENDING'),
+(3, '303 Third St, FutureVille', '2024-11-01', 'OVERNIGHT', 'IN_TRANSIT');
+------------------
+
