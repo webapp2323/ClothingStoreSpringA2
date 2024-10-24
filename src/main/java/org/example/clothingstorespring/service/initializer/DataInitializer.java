@@ -67,7 +67,7 @@ public class DataInitializer {
         // Додати нового користувача
         User user = new User();
         user.setUsername("JohnDoe"); // Використовуйте setUsername замість setName
-        user.setPassword("securePassword"); // Додайте пароль
+        user.setPassword("$2a$10$RqE9O2E9hh4YLRVrYC.GFe.Xk7OhR4uzyTJG4HtPaTawQKzx08WTe"); // Додайте пароль
         user.setEmail("john.doe@example.com");
         user.setCreatedAt(LocalDateTime.now()); // Додайте дату створення
         userRepository.save(user);
