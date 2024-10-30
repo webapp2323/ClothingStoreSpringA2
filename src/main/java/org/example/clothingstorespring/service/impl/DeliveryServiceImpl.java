@@ -1,6 +1,8 @@
 package org.example.clothingstorespring.service.impl;
 
 import org.example.clothingstorespring.model.Delivery;
+import org.example.clothingstorespring.model.DeliveryType;
+import org.example.clothingstorespring.model.Order;
 import org.example.clothingstorespring.repository.DeliveryRepository;
 import org.example.clothingstorespring.service.DeliveryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +49,20 @@ public class DeliveryServiceImpl implements DeliveryService {
     @Override
     public void deleteDelivery(Long id) {
         deliveryRepository.deleteById(id); // Видаляє доставку з бази даних
+    }
+
+    @Override
+    public Delivery findByOrderId(Long orderId) {
+        return deliveryRepository.findByOrderId(orderId);
+    }
+
+    @Override
+    public List<Delivery> findAllByOrder(Order order) {
+        return deliveryRepository.findAllByOrder(order);
+    }
+
+    @Override
+    public List<Delivery> findAllByDeliveryType(DeliveryType deliveryType) {
+        return deliveryRepository.findAllByDeliveryType(deliveryType);
     }
 }

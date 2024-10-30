@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "deliveries")
+
 public class Delivery {
 
     @Id

@@ -39,4 +39,10 @@ public class DeliveryController {
         deliveryService.deleteDelivery(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/{orderId}")
+    public ResponseEntity<Delivery> getDeliveryByOrderId(@PathVariable Long orderId) {
+        deliveryService.findByOrderId(orderId);
+        return ResponseEntity.ok(deliveryService.findByOrderId(orderId));
+    }
+
 }

@@ -18,3 +18,8 @@ https://www.youtube.com/watch?v=6u93yNqUJ9o
 6 )https://www.baeldung.com/jpa-cascade-types
 
 ### [Liquibase + Spring Boot ➡ Настройка и написание миграций](https://www.youtube.com/watch?v=prLt2LHbA8o&t=722s)
+
+[Базы данных за 42 минуты. Теория](https://www.youtube.com/watch?v=YdCGGBUCoDQ&list=PLVdcV6tHcaCHgVLbK7AW3KHavs88CP2w2)
+
+[Разработка базы данных интернет-магазина](https://www.youtube.com/watch?v=s3f_q_cbIPo)
+[Диаграми-концептуальгий-логический-физический уровни](https://app.diagrams.net/)

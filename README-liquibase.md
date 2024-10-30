@@ -1,3 +1,5 @@
+
+
 spring.application.name=ClothingStoreSpring
 
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
@@ -22,6 +24,7 @@ logging.level.org.example.clothingstorespring.controller=DEBUG
 logging.file.name=logs/application.log
 logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} - %msg%n
+
 
 
 - include:
