@@ -3,3 +3,4 @@ databaseChangeLog:
 
   - include:
       - file: db/changelog/sql/init-script-db.sql
+#      - file: db/changelog/sql/added-payment-table.sql

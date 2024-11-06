@@ -17,7 +17,7 @@ class ClothingStoreSpringApplicationTests {
 //        String rawPassword = "test";
 //        String encodedPassword = passwordEncoder.encode(rawPassword);
 //        System.out.println(encodedPassword);
-//
-//    }
-}
+
+    }
+
 

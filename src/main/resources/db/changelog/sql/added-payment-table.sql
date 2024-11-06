@@ -1,0 +1,13 @@
+-- Створення таблиці payments
+-- CREATE TABLE IF NOT EXISTS payments (
+--                                         id BIGSERIAL PRIMARY KEY,
+--                                         amount DECIMAL(10, 2) NOT NULL,
+--                                         method VARCHAR(50) NOT NULL,
+--                                         payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+-- );
+
+-- INSERT INTO payments (amount, method)
+-- VALUES
+--     (150.00, 'PAYPAL'),
+--     (200.50, 'BANK_TRANSFER'),
+--     (75.00, 'CREDIT_CARD');
