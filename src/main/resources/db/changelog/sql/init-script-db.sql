@@ -103,6 +103,8 @@ INSERT INTO payments (order_id, amount, method) VALUES
                                                     (3, 75.25, 'BANK_TRANSFER'),
                                                     (4, 300.00, 'DEBIT_CARD'),
                                                     (5, 150.75, 'CASH');
+
+
 INSERT INTO store (name, location, contact_email, established_date) VALUES
 ('Fashion Hub', 'Київ, вул. Хрещатик, 1', 'contact@fashionhub.ua', '2010-05-15'),('Style Point', 'Львів, пр. Свободи, 25', 'info@stylepoint.ua', '2015-08-22'),('Urban Wear', 'Одеса, вул. Дерибасівська, 10', 'sales@urbanwear.ua', '2018-11-30');
 

@@ -14,7 +14,10 @@ import java.util.List;
 @RequestMapping("/api/deliveries")
 public class DeliveryController {
 
-    @Autowired
+    public DeliveryController(DeliveryServiceImpl deliveryService) {
+        this.deliveryService = deliveryService;
+    }
+
     private DeliveryServiceImpl deliveryService;
 
     @PostMapping
