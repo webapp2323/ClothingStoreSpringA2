@@ -2,6 +2,7 @@ package org.example.clothingstorespring.service.impl;
 
 import org.example.clothingstorespring.model.Order;
 import org.example.clothingstorespring.model.OrderRequest;
+import org.example.clothingstorespring.model.OrderStatus;
 import org.example.clothingstorespring.repository.OrderRepository;
 import org.example.clothingstorespring.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,21 +15,24 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
-    private OrderRepository orderRepository; // Ін'єкція OrderRepository
+    public OrderServiceImpl(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
+    private final OrderRepository orderRepository;
 
     @Override
     @Transactional
     public Order createOrder(OrderRequest orderRequest) {
 
-        // Створення нового замовлення
+
         Order order = new Order();
         order.setCustomerName(orderRequest.getCustomerName());
-        order.setTotal(orderRequest.getTotalAmount()); // Переконайтеся, що назва методу правильна
-        order.setOrderDate(LocalDateTime.now()); // Встановлення дати замовлення
-        order.setStatus("PENDING"); // Статус за замовчуванням
+        order.setTotal(orderRequest.getTotalAmount());
+        order.setOrderDate(LocalDateTime.now());
+        order.setStatus(OrderStatus.valueOf("PENDING"));
 
-        // Збереження замовлення в базі даних
+
         return orderRepository.save(order);
     }
 
@@ -42,7 +46,7 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrderStatus(Long orderId, String status) {
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
-        order.setStatus(status);
+        order.setStatus(OrderStatus.valueOf(status));
         orderRepository.save(order);
     }
 }

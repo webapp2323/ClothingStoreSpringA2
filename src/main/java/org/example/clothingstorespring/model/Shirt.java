@@ -28,9 +28,3 @@ public class Shirt extends ClothingItem {
                 '}';
     }
 }
-/*
-2024-10-10 07:24:41 - Received request to add shirt: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-2024-10-10 07:24:41 - Shirt successfully added: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-2024-10-10 07:24:41 - 200 OK: Request successful. The server has responded as required.
-
- */

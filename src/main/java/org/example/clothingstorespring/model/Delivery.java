@@ -29,13 +29,13 @@ public class Delivery {
     @Column(name = "delivery_date")
     private LocalDateTime deliveryDate;
 
-    @Enumerated(EnumType.STRING) // Зберігає значення як рядок
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    private DeliveryStatus status; // Використання enum для статусу доставки
+    private DeliveryStatus status;
 
-    @Enumerated(EnumType.STRING) // Зберігає значення як рядок
+    @Enumerated(EnumType.STRING)
     @Column(name = "delivery_type", nullable = false)
-    private DeliveryType deliveryType;     // Використання enum для типу доставки
+    private DeliveryType deliveryType;
 
 
 }

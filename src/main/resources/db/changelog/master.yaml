@@ -3,4 +3,10 @@ databaseChangeLog:
 
   - include:
       - file: db/changelog/sql/init-script-db.sql
+#      - file: db/changelog/sql1/init1-script-db.sql
 
+#databaseChangeLog:
+#  - includeAll:
+#      path: db/changelog/sql/init-script-db.sql
+#  - includeAll:
+#      db/changelog/sql1/init1-script-db.sql

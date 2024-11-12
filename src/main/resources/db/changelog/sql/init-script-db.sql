@@ -46,10 +46,10 @@ INSERT INTO shirt (name, brand, price, sleeve_type, size, material) VALUES
 
 CREATE TABLE IF NOT EXISTS store (
                                      id SERIAL PRIMARY KEY,
-                                     name VARCHAR(255) NOT NULL UNIQUE, -- Название магазина должно быть уникальным и не NULL
-                                     location VARCHAR(255) NOT NULL,     -- Местоположение магазина обязательно
-                                     contact_email VARCHAR(255) NOT NULL UNIQUE, -- Контактный email должен быть уникальным и не NULL
-                                     established_date DATE CHECK (established_date <= CURRENT_DATE) -- Дата основания не может быть в будущем
+                                     name VARCHAR(255) NOT NULL UNIQUE,
+                                     location VARCHAR(255) NOT NULL,
+                                     contact_email VARCHAR(255) NOT NULL UNIQUE,
+                                     established_date DATE CHECK (established_date <= CURRENT_DATE)
 );
 
 CREATE TABLE IF NOT EXISTS "user" (
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS "user" (
                                       username VARCHAR(255) NOT NULL UNIQUE,
                                       password VARCHAR(255) NOT NULL,
                                       email VARCHAR(255) NOT NULL UNIQUE,
-                                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- DEFAULT отвечает за то, какое значение будет по умолчанию
+                                      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS role (
@@ -74,13 +74,13 @@ CREATE TABLE IF NOT EXISTS user_role (
 );
 
 
+
 CREATE TABLE IF NOT EXISTS orders (
                                       id BIGSERIAL PRIMARY KEY,
                                       customer_name VARCHAR(255) NOT NULL,
                                       total_amount DECIMAL(10, 2) NOT NULL,
-                                      status VARCHAR(50) NOT NULL DEFAULT 'PENDING'
+                                      status VARCHAR(50) NOT NULL -- Зберігає статус як рядок
 );
-
 INSERT INTO orders (customer_name, total_amount, status) VALUES
                                                              ('John Doe', 100.50, 'PENDING'),
                                                              ('Jane Smith', 250.00, 'COMPLETED'),
@@ -121,10 +121,7 @@ INSERT INTO user_role (user_id, role_id) VALUES
                                              (2, 1),
                                              (3, 2);
 
--- INSERT INTO "order" (user_id, store_id, total) VALUES
---                                                    (1, 1, 279.98),
---                                                    (2, 2, 149.99),
---                                                    (3, 3, 89.99);
+
 
 
 
@@ -135,7 +132,7 @@ CREATE TABLE IF NOT EXISTS deliveries (
     delivery_date DATE,
     delivery_type VARCHAR(50),
     status VARCHAR(50),
-    FOREIGN KEY (order_id) REFERENCES "order"(id)
+    FOREIGN KEY (order_id) REFERENCES "orders"(id)
 );
 
     INSERT INTO deliveries (order_id, delivery_address, delivery_date, delivery_type, status) VALUES

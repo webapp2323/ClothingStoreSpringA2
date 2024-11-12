@@ -1,8 +1,8 @@
 package org.example.clothingstorespring.model;
 
-public enum DeliveryStatus {
+public enum OrderStatus {
     PENDING,
-    IN_TRANSIT,
-    DELIVERED,
+    COMPLETED,
+    SHIPPED,
     CANCELED
 }

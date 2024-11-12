@@ -39,10 +39,7 @@ public class ShirtController {
         return ResponseEntity.ok(shirts);
     }
 
-    /*
-    2024-10-10 08:13:56 - Received request to get all shirts
-    2024-10-10 08:13:56 - Returning 40 shirts
-     */
+
 
     @GetMapping("/search")
     public ResponseEntity<List<Shirt>> getShirtsByIds(@RequestParam List<Long> ids) {
@@ -91,12 +88,7 @@ public class ShirtController {
         }
     }
 
-    /*
-    2024-10-10 07:24:41 - Received request to add shirt: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-    2024-10-10 07:24:41 - Shirt successfully added: {name='Lightweight Shirt', brand='Brand F', price=24.99, sleeve_Type=LONG, size=S, material='LINEN'}
-    2024-10-10 07:24:41 - 200 OK: Request successful. The server has responded as required.
 
-     */
     @GetMapping("/{id}")
     public ResponseEntity<Shirt> getShirtById(@PathVariable Long id) {
         log.info("Received request to get shirt by id: {}", id);
@@ -126,21 +118,7 @@ public class ShirtController {
         }
     }
 
-    /*
-PUT http://localhost:8080/api/v1/shirts/update_shirt
-{
-        "id": 3,
-        "name": "Lightweight Shirt 111",
-        "brand": "Brand F222",
-        "price": 24.99333,
-        "sleeve_Type": "LONG",
-        "size": "S",
-        "material": "LINEN"
-    }
 
-    2024-10-10 08:17:08 - Received request to update shirt: {name='Lightweight Shirt 111', brand='Brand F222', price=24.99333, sleeve_Type=LONG, size=S, material='LINEN'}
-    2024-10-10 08:17:08 - Shirt updated successfully: {name='Lightweight Shirt 111', brand='Brand F222', price=24.99333, sleeve_Type=LONG, size=S, material='LINEN'}
-     */
     @DeleteMapping("/delete")
     public ResponseEntity<Void> deleteShirts(@RequestBody List<Integer> ids) {
         // Логируем информацию о полученных идентификаторах
@@ -162,18 +140,3 @@ PUT http://localhost:8080/api/v1/shirts/update_shirt
 
 }
 
-/*
-DELETE  http://localhost:8080/api/v1/shirts/delete
-[
-    4,
-    6,
-    7
-]
-
-
-2024-10-10 08:30:29 - Received request to delete shirts with ids: [4, 6, 7]
-2024-10-10 08:30:29 - Shirt with id 4 successfully deleted
-2024-10-10 08:30:29 - Shirt with id 6 successfully deleted
-2024-10-10 08:30:29 - Shirt with id 7 successfully deleted
-2024-10-10 08:30:29 - 200 OK: Request successful. The server has responded as required.
- */
