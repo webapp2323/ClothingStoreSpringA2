@@ -19,8 +19,8 @@ public class Store {
     @Column(nullable = false)
     private String name;
 
-//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Order> orders;
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders;
 
 
 }

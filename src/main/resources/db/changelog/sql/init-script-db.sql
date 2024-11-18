@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS store (
                                      established_date DATE CHECK (established_date <= CURRENT_DATE)
 );
 
-CREATE TABLE IF NOT EXISTS "user" (
+CREATE TABLE IF NOT EXISTS users (
                                       id SERIAL PRIMARY KEY,
                                       username VARCHAR(255) NOT NULL UNIQUE,
                                       password VARCHAR(255) NOT NULL,
@@ -69,46 +69,16 @@ CREATE TABLE IF NOT EXISTS user_role (
                                          user_id INTEGER NOT NULL,
                                          role_id INTEGER NOT NULL,
                                          PRIMARY KEY (user_id, role_id),
-                                         FOREIGN KEY (user_id) REFERENCES "user"(id),
+                                         FOREIGN KEY (user_id) REFERENCES users(id),
                                          FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
 
 
--- CREATE TABLE IF NOT EXISTS orders (
---                                       id BIGSERIAL PRIMARY KEY,
---                                       customer_name VARCHAR(255) NOT NULL,
---                                       total_amount DECIMAL(10, 2) NOT NULL,
---                                       status VARCHAR(50) NOT NULL -- Зберігає статус як рядок
--- );
--- INSERT INTO orders (customer_name, total_amount, status) VALUES
---                                                              ('John Doe', 100.50, 'PENDING'),
---                                                              ('Jane Smith', 250.00, 'COMPLETED'),
---                                                              ('Alice Johnson', 75.25, 'PENDING'),
---                                                              ('Bob Brown', 300.00, 'SHIPPED'),
---                                                              ('Charlie Black', 150.75, 'PENDING');
---
--- CREATE TABLE IF NOT EXISTS payments (
---                                         id BIGSERIAL PRIMARY KEY,
---                                         order_id BIGINT NOT NULL,
---                                         amount DECIMAL(10, 2) NOT NULL,
---                                         method VARCHAR(50) NOT NULL,
---                                         payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
---                                         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
--- );
---
--- INSERT INTO payments (order_id, amount, method) VALUES
---                                                     (1, 100.50, 'CREDIT_CARD'),
---                                                     (2, 250.00, 'PAYPAL'),
---                                                     (3, 75.25, 'BANK_TRANSFER'),
---                                                     (4, 300.00, 'DEBIT_CARD'),
---                                                     (5, 150.75, 'CASH');
---
-
 INSERT INTO store (name, location, contact_email, established_date) VALUES
 ('Fashion Hub', 'Київ, вул. Хрещатик, 1', 'contact@fashionhub.ua', '2010-05-15'),('Style Point', 'Львів, пр. Свободи, 25', 'info@stylepoint.ua', '2015-08-22'),('Urban Wear', 'Одеса, вул. Дерибасівська, 10', 'sales@urbanwear.ua', '2018-11-30');
 
-INSERT INTO "user" (username, password, email) VALUES
+INSERT INTO users (username, password, email) VALUES
 ('ivan123', '$2a$10$yJougGA.V5UXeWMZ6qDQsep1ANpUuhOeloS3fqYDotN.ROY45/ihG', 'ivan@ua.example.com'),                                               ('maria456', '$2a$10$yJougGA.V5UXeWMZ6qDQsep1ANpUuhOeloS3fqYDotN.ROY45/ihG', 'maria@ua.example.com'),                                                   ('alex789', '$2a$10$yJougGA.V5UXeWMZ6qDQsep1ANpUuhOeloS3fqYDotN.ROY45/ihG', 'alex@ua.example.com');
 
 -- пароль "test"

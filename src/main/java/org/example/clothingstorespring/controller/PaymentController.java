@@ -2,7 +2,9 @@ package org.example.clothingstorespring.controller;
 
 
 import org.example.clothingstorespring.dto.PaymentDTO;
+import org.example.clothingstorespring.dto.PaymentResponseDTO;
 import org.example.clothingstorespring.model.Payment;
+import org.example.clothingstorespring.model.PaymentResponse;
 import org.example.clothingstorespring.service.PaymentService;
 
 import org.slf4j.LoggerFactory;
@@ -27,6 +29,7 @@ public class PaymentController {
 
     private PaymentService paymentService;
 
+    //Поганий приклад як не треба робити респонси. Коли ми повертаємо ЕНТІНІ, то можуть бути циклічні залежності.
     @PostMapping
     public ResponseEntity<Payment> createPayment(@RequestBody PaymentDTO payment) {
         logger.info("Received payment request: {}", payment);
@@ -35,6 +38,21 @@ public class PaymentController {
             Payment createdPayment = paymentService.createPayment(payment);
             logger.info("Payment created successfully: {}", createdPayment);
             return ResponseEntity.status(HttpStatus.CREATED).body(createdPayment);
+        } catch (Exception e) {
+            logger.error("Error creating payment: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    //А ось чому треба використовувати ДТО (DTO)
+    @PostMapping("/correct")
+    public ResponseEntity<PaymentResponseDTO> createPaymentWithCorrectResponse(@RequestBody PaymentDTO payment) {
+        try {
+            Payment createdPayment = paymentService.createPayment(payment);
+            logger.info("Payment created successfully: {}", createdPayment);
+
+            PaymentResponseDTO responseDTO = mapToResponseDTO(createdPayment);
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
         } catch (Exception e) {
             logger.error("Error creating payment: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -52,5 +70,14 @@ public class PaymentController {
             logger.error("Error retrieving payments: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+    private PaymentResponseDTO mapToResponseDTO(Payment payment) {
+        PaymentResponseDTO dto = new PaymentResponseDTO();
+        dto.setId(payment.getId());
+        dto.setOrderId(payment.getOrder().getId());
+        dto.setAmount(payment.getAmount());
+        dto.setMethod(payment.getMethod());
+        dto.setPaymentDate(payment.getPaymentDate());
+        return dto;
     }
 }

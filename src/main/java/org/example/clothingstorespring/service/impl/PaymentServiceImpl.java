@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -67,8 +69,7 @@ public class PaymentServiceImpl implements PaymentService {
         }
 
         if (payment.getPaymentDate() == null) {
-            log.error("Payment date must not be null");
-            throw new IllegalArgumentException("Payment date must not be null");
+            payment.setPaymentDate(LocalDateTime.now());
         }
 
         List<String> validMethods = Arrays.asList("CREDIT_CARD", "PAYPAL", "BANK_TRANSFER");
@@ -76,8 +77,8 @@ public class PaymentServiceImpl implements PaymentService {
             log.error("Invalid payment method: {}", payment.getMethod());
             throw new IllegalArgumentException("Invalid payment method: " + payment.getMethod());
         }
-        Order order = orderService.findOrderById(Long.valueOf(payment.getOrderId()));
 
+        Order order = orderService.findOrderById(Long.valueOf(payment.getOrderId()));
 
         Payment payment1 = new Payment();
         payment1.setAmount(payment.getAmount());
