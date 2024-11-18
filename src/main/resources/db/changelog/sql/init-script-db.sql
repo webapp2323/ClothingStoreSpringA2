@@ -75,35 +75,35 @@ CREATE TABLE IF NOT EXISTS user_role (
 
 
 
-CREATE TABLE IF NOT EXISTS orders (
-                                      id BIGSERIAL PRIMARY KEY,
-                                      customer_name VARCHAR(255) NOT NULL,
-                                      total_amount DECIMAL(10, 2) NOT NULL,
-                                      status VARCHAR(50) NOT NULL -- Зберігає статус як рядок
-);
-INSERT INTO orders (customer_name, total_amount, status) VALUES
-                                                             ('John Doe', 100.50, 'PENDING'),
-                                                             ('Jane Smith', 250.00, 'COMPLETED'),
-                                                             ('Alice Johnson', 75.25, 'PENDING'),
-                                                             ('Bob Brown', 300.00, 'SHIPPED'),
-                                                             ('Charlie Black', 150.75, 'PENDING');
-
-CREATE TABLE IF NOT EXISTS payments (
-                                        id BIGSERIAL PRIMARY KEY,
-                                        order_id BIGINT NOT NULL,
-                                        amount DECIMAL(10, 2) NOT NULL,
-                                        method VARCHAR(50) NOT NULL,
-                                        payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                                        FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
-);
-
-INSERT INTO payments (order_id, amount, method) VALUES
-                                                    (1, 100.50, 'CREDIT_CARD'),
-                                                    (2, 250.00, 'PAYPAL'),
-                                                    (3, 75.25, 'BANK_TRANSFER'),
-                                                    (4, 300.00, 'DEBIT_CARD'),
-                                                    (5, 150.75, 'CASH');
-
+-- CREATE TABLE IF NOT EXISTS orders (
+--                                       id BIGSERIAL PRIMARY KEY,
+--                                       customer_name VARCHAR(255) NOT NULL,
+--                                       total_amount DECIMAL(10, 2) NOT NULL,
+--                                       status VARCHAR(50) NOT NULL -- Зберігає статус як рядок
+-- );
+-- INSERT INTO orders (customer_name, total_amount, status) VALUES
+--                                                              ('John Doe', 100.50, 'PENDING'),
+--                                                              ('Jane Smith', 250.00, 'COMPLETED'),
+--                                                              ('Alice Johnson', 75.25, 'PENDING'),
+--                                                              ('Bob Brown', 300.00, 'SHIPPED'),
+--                                                              ('Charlie Black', 150.75, 'PENDING');
+--
+-- CREATE TABLE IF NOT EXISTS payments (
+--                                         id BIGSERIAL PRIMARY KEY,
+--                                         order_id BIGINT NOT NULL,
+--                                         amount DECIMAL(10, 2) NOT NULL,
+--                                         method VARCHAR(50) NOT NULL,
+--                                         payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+--                                         FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE
+-- );
+--
+-- INSERT INTO payments (order_id, amount, method) VALUES
+--                                                     (1, 100.50, 'CREDIT_CARD'),
+--                                                     (2, 250.00, 'PAYPAL'),
+--                                                     (3, 75.25, 'BANK_TRANSFER'),
+--                                                     (4, 300.00, 'DEBIT_CARD'),
+--                                                     (5, 150.75, 'CASH');
+--
 
 INSERT INTO store (name, location, contact_email, established_date) VALUES
 ('Fashion Hub', 'Київ, вул. Хрещатик, 1', 'contact@fashionhub.ua', '2010-05-15'),('Style Point', 'Львів, пр. Свободи, 25', 'info@stylepoint.ua', '2015-08-22'),('Urban Wear', 'Одеса, вул. Дерибасівська, 10', 'sales@urbanwear.ua', '2018-11-30');
@@ -125,17 +125,3 @@ INSERT INTO user_role (user_id, role_id) VALUES
 
 
 
-CREATE TABLE IF NOT EXISTS deliveries (
-    id SERIAL PRIMARY KEY,
-    order_id INT NOT NULL,
-    delivery_address VARCHAR(255),
-    delivery_date DATE,
-    delivery_type VARCHAR(50),
-    status VARCHAR(50),
-    FOREIGN KEY (order_id) REFERENCES "orders"(id)
-);
-
-    INSERT INTO deliveries (order_id, delivery_address, delivery_date, delivery_type, status) VALUES
-    (1, '123 Main St, Cityville', '2024-10-23', 'STANDARD', 'PENDING'),
-    (2, '456 Elm St, Townsville', '2024-10-24', 'EXPRESS', 'IN_TRANSIT'),
-    (3, '789 Maple St, Villagetown', '2024-10-25', 'STANDARD', 'DELIVERED');

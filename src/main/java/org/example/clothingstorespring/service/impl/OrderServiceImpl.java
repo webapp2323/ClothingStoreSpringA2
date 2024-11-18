@@ -49,4 +49,9 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.valueOf(status));
         orderRepository.save(order);
     }
+
+    @Override
+    public Order findOrderById(Long orderId) {
+        return orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
+    }
 }

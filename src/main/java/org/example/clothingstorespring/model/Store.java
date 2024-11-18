@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "stores")
+@Table(name = "store")
 public class Store {
 
     @Id
@@ -19,8 +19,8 @@ public class Store {
     @Column(nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders;
+//    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Order> orders;
 
 
 }

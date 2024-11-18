@@ -1,10 +1,12 @@
 package org.example.clothingstorespring.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.clothingstorespring.dto.PaymentDTO;
 import org.example.clothingstorespring.model.Order;
 import org.example.clothingstorespring.model.Payment;
 import org.example.clothingstorespring.model.PaymentResponse;
 import org.example.clothingstorespring.repository.PaymentRepository;
+import org.example.clothingstorespring.service.OrderService;
 import org.example.clothingstorespring.service.PaymentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,9 +20,11 @@ import java.util.List;
 public class PaymentServiceImpl implements PaymentService {
 
     private final PaymentRepository paymentRepository;
+    private  final OrderService orderService;
 
-    public PaymentServiceImpl(PaymentRepository paymentRepository) {
+    public PaymentServiceImpl(PaymentRepository paymentRepository, OrderService orderService) {
         this.paymentRepository = paymentRepository;
+        this.orderService = orderService;
     }
 
     @Override
@@ -44,7 +48,7 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional
-    public Payment createPayment(Payment payment) {
+    public Payment createPayment(PaymentDTO payment) {
         log.info("Creating payment: {}", payment);
 
         if (payment == null) {
@@ -72,8 +76,16 @@ public class PaymentServiceImpl implements PaymentService {
             log.error("Invalid payment method: {}", payment.getMethod());
             throw new IllegalArgumentException("Invalid payment method: " + payment.getMethod());
         }
+        Order order = orderService.findOrderById(Long.valueOf(payment.getOrderId()));
 
-        Payment savedPayment = paymentRepository.save(payment);
+
+        Payment payment1 = new Payment();
+        payment1.setAmount(payment.getAmount());
+        payment1.setOrder(order);
+        payment1.setMethod(payment.getMethod());
+        payment1.setPaymentDate(payment.getPaymentDate());
+
+        Payment savedPayment = paymentRepository.save(payment1);
         log.info("Payment created successfully: {}", savedPayment);
         return savedPayment;
     }

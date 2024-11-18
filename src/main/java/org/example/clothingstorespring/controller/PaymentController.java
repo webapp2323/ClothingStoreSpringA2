@@ -1,6 +1,7 @@
 package org.example.clothingstorespring.controller;
 
 
+import org.example.clothingstorespring.dto.PaymentDTO;
 import org.example.clothingstorespring.model.Payment;
 import org.example.clothingstorespring.service.PaymentService;
 
@@ -27,7 +28,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<Payment> createPayment(@RequestBody Payment payment) {
+    public ResponseEntity<Payment> createPayment(@RequestBody PaymentDTO payment) {
         logger.info("Received payment request: {}", payment);
         try {
             logger.info("Creating payment: {}", payment);
