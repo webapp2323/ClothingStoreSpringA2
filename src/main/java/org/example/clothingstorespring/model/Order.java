@@ -18,6 +18,7 @@ public class Order {
     private Long id;
 
     private String customerName;
+    @Column(name = "total_amount")
     private BigDecimal total;
     private LocalDateTime orderDate;
 
@@ -25,13 +26,13 @@ public class Order {
     private OrderStatus status;
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "store_id")
-//    private Store store;
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
 
 }

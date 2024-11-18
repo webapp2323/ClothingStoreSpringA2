@@ -1,17 +1,19 @@
 package org.example.clothingstorespring.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
+import org.example.clothingstorespring.dto.OrderDTO;
 import org.example.clothingstorespring.model.Order;
 import org.example.clothingstorespring.model.OrderRequest;
 import org.example.clothingstorespring.model.OrderStatus;
 import org.example.clothingstorespring.repository.OrderRepository;
 import org.example.clothingstorespring.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -21,8 +23,27 @@ public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
 
+
     @Override
+    public Order createOrder(OrderDTO orderDTO) {
+        if (orderDTO.getUser() == null || orderDTO.getUser().getId() == null) {
+            throw new IllegalArgumentException("User must not be null");
+        }
+
+        Order order = new Order();
+        order.setCustomerName(orderDTO.getCustomerName());
+        order.setTotal(orderDTO.getTotal());
+        order.setOrderDate(LocalDateTime.now());
+        order.setStatus(OrderStatus.PENDING);
+
+        // Assuming Order has a setUser method
+        order.setUser(orderDTO.getUser());
+
+        return orderRepository.save(order);
+    }
+
     @Transactional
+    @Override
     public Order createOrder(OrderRequest orderRequest) {
 
 

@@ -5,14 +5,14 @@ databaseChangeLog:
       - file: db/changelog/sql/init-script-db.sql
 
   - include:
-      - file: db/changelog/sql1/init1-script-db.sql
+      - file: db/changelog/sql/orders-payments.sql
 
   - include:
-      - file: db/changelog/sql1/deliveries-script-db.sql
+      - file: db/changelog/sql/deliveries-script-db.sql
 
 
 #databaseChangeLog:
 #  - includeAll:
 #      path: db/changelog/sql/init-script-db.sql
 #  - includeAll:
-#      db/changelog/sql1/init1-script-db.sql
+#      db/changelog/sql1/orders-payments.sql
