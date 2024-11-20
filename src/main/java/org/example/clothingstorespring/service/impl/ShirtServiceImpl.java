@@ -3,6 +3,7 @@ package org.example.clothingstorespring.service.impl;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.clothingstorespring.model.Pants;
 import org.example.clothingstorespring.model.Shirt;
 import org.example.clothingstorespring.repository.ShirtRepository;
 import org.example.clothingstorespring.service.ShirtService;
@@ -35,11 +36,16 @@ public class ShirtServiceImpl implements ShirtService {
 2024-10-10 09:36:02 - Shirt found: {id=11, name='Lightweight Shirt', brand='Brand F', price=24.99} sleeve_Type=LONG, size=S, material='LINEN'}
      */
 
-    @Override
-    public Shirt addShirt(Shirt shirt) {
-        return shirtRepository.save(shirt); // Использование готового метода JPA
-    }
+//    @Override
+//    public Shirt addShirt(Shirt shirt) {
+//        return shirtRepository.save(shirt); // Использование готового метода JPA
+//    }
+@Override
+public Shirt addShirt(Shirt shirt) {
 
+    shirtRepository.save(shirt);
+    return shirt;
+}
     @Override
     public Shirt updateShirt(Shirt shirt) {
         return shirtRepository.save(shirt); // Использование готового метода JPA для обновления

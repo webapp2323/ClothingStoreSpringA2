@@ -7,21 +7,21 @@ import lombok.Setter;
 import org.example.clothingstorespring.model.Material;
 import org.example.clothingstorespring.model.Size;
 
-import java.math.BigDecimal;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class AddPantsResponseDTO {
+public class AddShirtResponseDTO {
 
     private Long id;
-    private String name;
-    private String brand;
-    private BigDecimal price;
+
     private Size size;
+
     private Material material;
-    private Boolean hasHood;
+    private Material color;
+    private boolean hasHood;
+    private String message;
+
 }
 
 

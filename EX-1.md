@@ -97,5 +97,24 @@ A new resource was created successfully.
 "material": "COTTON"
 }
 
-
+POST http://localhost:8080/api/v1/shirts/add
+{
+"name": "Casual Shirt",
+"brand": "BrandY",
+"price": 29.99,
+"sleeveType": "LONG",
+"size": "L",
+"material": "COTTON"
+}
+201 Created
+A new resource was created successfully.
+{
+"id": 11,
+"name": "Casual Shirt",
+"brand": "BrandY",
+"price": 29.99,
+"sleeveType": "LONG",
+"size": "L",
+"material": "COTTON"
+}
 
