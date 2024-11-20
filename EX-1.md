@@ -78,3 +78,24 @@ A new resource was created successfully.
 "has_Hood": true
 }
 
+POST http://localhost:8080/api/pants/add
+{
+"name": "Stylish Pants",
+"brand": "BrandX",
+"price": 49.99,
+"size": "M",
+"material": "COTTON"
+}
+201 Created
+A new resource was created successfully.
+{
+"id": 6,
+"name": "Stylish Pants",
+"brand": "BrandX",
+"price": 49.99,
+"size": "M",
+"material": "COTTON"
+}
+
+
+

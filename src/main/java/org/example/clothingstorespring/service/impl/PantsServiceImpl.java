@@ -17,11 +17,16 @@ public class PantsServiceImpl implements PantsService {
 
     }
 
-    @Override
-    public void addPants(Pants pants) {
-        pantsRepository.save(pants);
-    }
+//    @Override
+//    public void addPants(Pants pants) {
+//        pantsRepository.save(pants);
+//    }
+@Override
+public Pants addPants(Pants pants) {
 
+    pantsRepository.save(pants);
+    return pants;
+}
     @Override
     public List<Pants> getAllPants() {
         return pantsRepository.findAll();

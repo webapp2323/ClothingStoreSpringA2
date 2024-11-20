@@ -7,7 +7,7 @@ import org.example.clothingstorespring.model.Pants;
 import java.util.List;
 
 public interface PantsService {
-    void addPants(Pants pants);
+    Pants addPants(Pants pants);
     List<Pants> getAllPants();
     Pants getPantsById(Long id);
     void updatePants(Pants pants);

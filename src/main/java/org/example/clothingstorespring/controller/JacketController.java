@@ -27,7 +27,7 @@ public class JacketController {
         return jacketService.getAllJacket(); // Используем jacketService
     }
 
-    // Контроллер, который обрабатывает запросы на добавление новой куртки
+
     @PostMapping("/add")
     public ResponseEntity<Jacket> addJacket(@RequestBody Jacket jacket) {
         try {
