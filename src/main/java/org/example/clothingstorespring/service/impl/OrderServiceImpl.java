@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.PENDING);
 
-        // Assuming Order has a setUser method
+
         order.setUser(orderDTO.getUser());
 
         return orderRepository.save(order);

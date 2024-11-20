@@ -54,11 +54,11 @@ public class OrderController {
 
     private OrderResponseDTO mapToResponseDTO(Order order) {
         OrderResponseDTO dto = new OrderResponseDTO();
-        dto.setId(order.getId());  // Assuming there's a method getId() in Order
+        dto.setId(order.getId());
         dto.setCustomerName(order.getCustomerName());
         dto.setTotal(order.getTotal());
         dto.setOrderDate(order.getOrderDate());
-        dto.setStatus(order.getStatus()); // Assuming there's a method getStatus() in Order
+        dto.setStatus(order.getStatus());
         return dto;
     }
 }

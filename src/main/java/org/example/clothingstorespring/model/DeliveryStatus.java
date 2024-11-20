@@ -4,5 +4,9 @@ public enum DeliveryStatus {
     PENDING,
     IN_TRANSIT,
     DELIVERED,
-    CANCELED
+    CANCELED;
+
+    public String toUpperCase() {
+        return name().toUpperCase();
+    }
 }

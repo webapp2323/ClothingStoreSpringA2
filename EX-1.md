@@ -35,3 +35,22 @@ POST http://localhost:8080/api/orders/createOrder
 "orderDate": "2024-11-19T04:59:57.5725106",
 "status": "PENDING"
 }
+
+POST http://localhost:8080/api/deliveries/createDelivery
+{
+"orderId": 3,   
+"deliveryAddress": "123 Main St",
+"deliveryDate": "2024-11-20T10:00:00",
+"status": "PENDING",
+"deliveryType": "STANDARD"
+}
+201 Created
+A new resource was created successfully.
+{
+"id": 15,
+"orderId": 3,
+"deliveryAddress": "123 Main St",
+"deliveryDate": "2024-11-20T10:00:00",
+"status": "PENDING",
+"deliveryType": "STANDARD"
+}

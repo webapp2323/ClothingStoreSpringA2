@@ -3,5 +3,10 @@ package org.example.clothingstorespring.model;
 public enum DeliveryType {
     STANDARD,
     EXPRESS,
-    OVERNIGHT
+    OVERNIGHT;
+
+    public String toUpperCase() {
+        return name().toUpperCase();
+
+    }
 }

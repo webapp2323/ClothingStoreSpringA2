@@ -15,18 +15,17 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class OrderDTO {
 
     @JsonProperty("user")
-    private User user; // Ensure this is the correct field type
+    private User user;
 
     private String customerName;
 
     private BigDecimal total;
     private LocalDateTime orderDate;
     private OrderStatus status;
-
-
 }
 
 

@@ -1,14 +1,17 @@
 package org.example.clothingstorespring.controller;
 
 
-
+import org.example.clothingstorespring.dto.DeliveryDTO;
+import org.example.clothingstorespring.dto.DeliveryResponseDTO;
 import org.example.clothingstorespring.model.Delivery;
 import org.example.clothingstorespring.service.impl.DeliveryServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/deliveries")
@@ -18,13 +21,37 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
     }
 
-    private DeliveryServiceImpl deliveryService;
+    private final DeliveryServiceImpl deliveryService;
+    private static final Logger logger = LoggerFactory.getLogger(DeliveryController.class);
 
-    @PostMapping
-    public ResponseEntity<Delivery> createDelivery(@RequestBody Delivery delivery) {
-        Delivery createdDelivery = deliveryService.createDelivery(delivery);
-        return ResponseEntity.ok(createdDelivery);
+    @PostMapping("/createDelivery")
+    public ResponseEntity<DeliveryResponseDTO> createDelivery(@RequestBody DeliveryDTO deliveryDTO) {
+        try {
+            Delivery createdDelivery = deliveryService.createDelivery(deliveryDTO);
+            logger.info("Delivery created successfully: {}", createdDelivery);
+
+            DeliveryResponseDTO responseDTO = mapToResponseDTO(createdDelivery);
+            return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid input: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            logger.error("Error creating delivery: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
+
+    private DeliveryResponseDTO mapToResponseDTO(Delivery delivery) {
+        DeliveryResponseDTO dto = new DeliveryResponseDTO();
+        dto.setId(delivery.getId());
+        dto.setOrderId(delivery.getOrder().getId());
+        dto.setDeliveryAddress(delivery.getDeliveryAddress());
+        dto.setDeliveryDate(delivery.getDeliveryDate());
+        dto.setStatus(delivery.getStatus());
+        dto.setDeliveryType(delivery.getDeliveryType());
+        return dto;
+    }
+
 
     @GetMapping
     public List<Delivery> getAllDeliveries() {
