@@ -54,3 +54,27 @@ A new resource was created successfully.
 "status": "PENDING",
 "deliveryType": "STANDARD"
 }
+
+POST http://localhost:8080/api/jackets/add
+{
+"name": "Stylish Jacket",
+"brand": "BrandName",
+"price": 99.99,
+"size": "M",
+"material": "COTTON",
+"color": "BLUE",
+"has_Hood": true
+}
+201 Created
+A new resource was created successfully.
+{
+"id": 6,
+"name": "Stylish Jacket",
+"brand": "BrandName",
+"price": 99.99,
+"size": "M",
+"material": "COTTON",
+"color": "BLUE",
+"has_Hood": true
+}
+

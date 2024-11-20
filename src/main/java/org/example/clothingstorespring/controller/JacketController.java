@@ -4,60 +4,56 @@ package org.example.clothingstorespring.controller;
 import org.example.clothingstorespring.model.Jacket;
 import org.example.clothingstorespring.service.JacketService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/jackets")
+@RequestMapping("api/jackets")
 public class JacketController {
 
-    private final JacketService service;// Сервис для управления бизнес-логикой
+    private final JacketService jacketService; // Убедитесь, что название переменной совпадает
 
-    public JacketController(JacketService service) {
-        this.service = service;
+    // Конструктор для внедрения зависимости
+    public JacketController(JacketService jacketService) {
+        this.jacketService = jacketService;
     }
 
+    // Получение всех курток
     @GetMapping
     public List<Jacket> getAllJackets() {
-        return service.getAllJacket();
+        return jacketService.getAllJacket(); // Используем jacketService
     }
-    //контроллер которий обрабативает запроси на добавление новой куртки
+
+    // Контроллер, который обрабатывает запросы на добавление новой куртки
     @PostMapping("/add")
-    //Аннотация @RequestBody:  указывает, что данные из тела HTTP-запроса будут автоматически преобразованы в объект Jacket. Когда клиент (например, Postman) отправляет POST-запрос с JSON-данными, Spring Boot использует Jackson  для десериализации JSON в объект Java.
-
-    //JSON-запрос который  отправляется через Postman:
-    //POST http://localhost:8080/jackets/add
-    //{
-    //"name": "{{$randomFileName}}",
-    //"brand": "{{$randomUserName}}",
-    //"size": "S",
-    //"price": {{$randomPrice}},
-    //"material": "COTTON",
-    //"hasHood" :true
-    //    }
-    //Jackson: Это библиотека, которая обычно используется в Spring Boot для преобразования JSON в Java-объекты. Она автоматически связывает поля JSON с соответствующими полями класса Jacket.
-    //поле name в JSON будет сопоставлено с полем name в классе public abstract class ClothingItem ...
-    //После того как объект Jacket будет создан, контроллер передаст его в сервис, который сохранит его в базе данных:
-    public void addJacket(@RequestBody Jacket jacket) {
-        service.addJacket(jacket);
-    }
-
-    @GetMapping("/{id}")
-    public Jacket getJacketById(@PathVariable Long id) {
-        return service.getJacketById(id);
-    }
-
-    @PutMapping("/update")
-    public void updateJacket(@RequestBody Jacket jacket) {
-        service.updateJacket(jacket);
-    }
-
-    @DeleteMapping("/delete")
-    public void deleteJacket(@RequestBody Jacket jacket) {
-        service.deleteJacket(jacket);
+    public ResponseEntity<Jacket> addJacket(@RequestBody Jacket jacket) {
+        try {
+            Jacket savedJacket = jacketService.addJacket(jacket);
+            return ResponseEntity.status(HttpStatus.CREATED).body(savedJacket);
+        } catch (Exception e) {
+            e.printStackTrace(); // Вывод ошибки в консоль
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }
+//    @GetMapping("/{id}")
+//    public Jacket getJacketById(@PathVariable Long id) {
+//        return service.getJacketById(id);
+//    }
+//
+//    @PutMapping("/update")
+//    public void updateJacket(@RequestBody Jacket jacket) {
+//        service.updateJacket(jacket);
+//    }
+//
+//    @DeleteMapping("/delete")
+//    public void deleteJacket(@RequestBody Jacket jacket) {
+//        service.deleteJacket(jacket);
+//    }
+//}
 
 
 
