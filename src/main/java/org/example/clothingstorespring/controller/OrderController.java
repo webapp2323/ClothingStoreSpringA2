@@ -2,25 +2,19 @@ package org.example.clothingstorespring.controller;
 
 
 import org.example.clothingstorespring.dto.OrderDTO;
+import org.example.clothingstorespring.dto.OrderDeleteDTO;
 import org.example.clothingstorespring.dto.OrderResponseDTO;
-import org.example.clothingstorespring.dto.PaymentDTO;
-import org.example.clothingstorespring.dto.PaymentResponseDTO;
 import org.example.clothingstorespring.model.Order;
-import org.example.clothingstorespring.model.OrderRequest;
-import org.example.clothingstorespring.model.Payment;
-import org.example.clothingstorespring.model.PaymentResponse;
 import org.example.clothingstorespring.service.OrderService;
-import org.example.clothingstorespring.service.PaymentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.example.clothingstorespring.service.impl.OrderServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import java.util.List;
 
 
 @RestController
@@ -29,9 +23,9 @@ public class OrderController {
 
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-    private final OrderService orderService;
+    private final OrderServiceImpl orderService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(OrderServiceImpl orderService) {
         this.orderService = orderService;
     }
 
@@ -51,6 +45,21 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
+    @PostMapping("/delete")
+    public ResponseEntity<OrderResponseDTO> deleteOrder(@RequestBody OrderDeleteDTO orderDTO) {
+        try {
+            orderService.deleteOrder(orderService.findOrderById(orderDTO.getOrderId()));
+            logger.info("Order with orderId: {} deleted successfully", orderDTO.getOrderId() );
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(new OrderResponseDTO());
+        } catch (IllegalArgumentException e) {
+            logger.error("Invalid input: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        } catch (Exception e) {
+            logger.error("Error deleting order: {}", e.getMessage(), e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
 
     private OrderResponseDTO mapToResponseDTO(Order order) {
         OrderResponseDTO dto = new OrderResponseDTO();
@@ -61,4 +70,5 @@ public class OrderController {
         dto.setStatus(order.getStatus());
         return dto;
     }
+
 }

@@ -18,5 +18,7 @@ public interface DeliveryService {
     Delivery findByOrderId(Long orderId);
     List<Delivery> findAllByOrder(Order order);
     List<Delivery> findAllByDeliveryType(DeliveryType deliveryType);
+    List<Delivery> findAllPending();
 
+    void save(Delivery delivery);
 }

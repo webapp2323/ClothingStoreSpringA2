@@ -86,6 +86,8 @@ public class PaymentServiceImpl implements PaymentService {
         payment1.setMethod(payment.getMethod());
         payment1.setPaymentDate(payment.getPaymentDate());
 
+
+
         Payment savedPayment = paymentRepository.save(payment1);
         log.info("Payment created successfully: {}", savedPayment);
         return savedPayment;

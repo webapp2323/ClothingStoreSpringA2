@@ -4,12 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.example.clothingstorespring.model.DeliveryStatus;
-import org.example.clothingstorespring.model.DeliveryType;
-import org.example.clothingstorespring.model.Material;
-import org.example.clothingstorespring.model.Size;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,11 +14,12 @@ import java.time.LocalDateTime;
 public class AddJacketResponseDTO {
 
     private Long id;
-
-    private Size size;
-
-    private Material material;
-    private Material color;
+    private String name;
+    private String brand;
+    private String color;
+    private String size;
+    private BigDecimal price;
+    private String material;
     private boolean hasHood;
     private String message;
 

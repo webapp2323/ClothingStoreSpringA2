@@ -15,26 +15,11 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDTO {
+public class OrderDeleteDTO {
 
-    @JsonProperty("user")
-    private User user;
+    @JsonProperty("order_id")
+    private Long orderId;
 
-    @JsonProperty("customer_name")
-    private String customerName;
 
-    private BigDecimal total;
-
-    @JsonProperty("order_date")
-    private LocalDateTime orderDate;
-
-    @JsonProperty("status")
-    private OrderStatus status;
-
-    @JsonProperty("payment")
-    private PaymentDTO payment;
-
-    @JsonProperty("delivery")
-    private DeliveryDTO delivery;
 }
 

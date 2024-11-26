@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 
@@ -17,6 +18,7 @@ public abstract class ClothingItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // Генерація ID
     private Long id;
+    @NotNull
     private String name;
     private String brand;
     private BigDecimal price;

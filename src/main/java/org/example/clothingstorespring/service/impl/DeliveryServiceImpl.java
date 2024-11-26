@@ -86,6 +86,16 @@ public class DeliveryServiceImpl implements DeliveryService {
     public List<Delivery> findAllByDeliveryType(DeliveryType deliveryType) {
         return List.of();
     }
+
+    @Override
+    public List<Delivery> findAllPending() {
+        return deliveryRepository.findAllByStatus(DeliveryStatus.PENDING);
+    }
+
+    @Override
+    public void save(Delivery delivery) {
+        deliveryRepository.save(delivery);
+    }
 }
     // Повертає список усіх доставок
 //    @Override

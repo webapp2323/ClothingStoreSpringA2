@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.lang.model.element.Name;
+import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -13,14 +15,11 @@ public class Jacket extends ClothingItem {
 
 
 
-    @Enumerated(EnumType.STRING)
-    private Size size;
-
-    @Enumerated(EnumType.STRING)
-    private Material material;
-
-    @Enumerated(EnumType.STRING)
-    private Color color;
-
-    private boolean has_Hood;
+    @NotNull
+    private String brand;
+    private String size;
+    private String color;
+    private BigDecimal price;
+    private String material;
+    private boolean hasHood;
 }

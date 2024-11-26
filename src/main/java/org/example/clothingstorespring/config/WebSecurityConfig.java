@@ -4,6 +4,7 @@ import org.example.clothingstorespring.service.security.CustomUserDetailsService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -21,6 +22,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 @EnableWebSecurity
+@EnableScheduling
 public class WebSecurityConfig {
 
     private final CustomUserDetailsService userDetailsService;

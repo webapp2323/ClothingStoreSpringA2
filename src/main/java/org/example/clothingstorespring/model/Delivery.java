@@ -12,16 +12,15 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "deliveries")
-
 public class Delivery {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id", nullable = false)
-    private Order order; // Зв'язок з сутністю Order
+    @OneToOne
+    @JoinColumn(name = "order_id", unique = true)
+    private Order order;
 
     @Column(name = "delivery_address", nullable = false)
     private String deliveryAddress;
@@ -36,6 +35,4 @@ public class Delivery {
     @Enumerated(EnumType.STRING)
     @Column(name = "delivery_type", nullable = false)
     private DeliveryType deliveryType;
-
-
 }

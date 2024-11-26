@@ -1,8 +1,10 @@
 package org.example.clothingstorespring.repository;
 
 import org.example.clothingstorespring.model.Delivery;
+import org.example.clothingstorespring.model.DeliveryStatus;
 import org.example.clothingstorespring.model.DeliveryType;
 import org.example.clothingstorespring.model.Order;
+import org.hibernate.annotations.processing.SQL;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
@@ -12,5 +14,8 @@ public interface DeliveryRepository extends JpaRepository<Delivery, Long> {
 
     List<Delivery> findAllByOrder(Order order);
     List<Delivery> findAllByDeliveryType(DeliveryType deliveryType);
+
+    List<Delivery> findAllByStatus(DeliveryStatus status);
+
 }
 

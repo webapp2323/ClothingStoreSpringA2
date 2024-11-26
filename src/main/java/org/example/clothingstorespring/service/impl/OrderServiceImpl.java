@@ -1,10 +1,14 @@
 package org.example.clothingstorespring.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.clothingstorespring.dto.DeliveryDTO;
 import org.example.clothingstorespring.dto.OrderDTO;
+import org.example.clothingstorespring.dto.PaymentDTO;
+import org.example.clothingstorespring.model.Delivery;
 import org.example.clothingstorespring.model.Order;
 import org.example.clothingstorespring.model.OrderRequest;
 import org.example.clothingstorespring.model.OrderStatus;
+import org.example.clothingstorespring.model.Payment;
 import org.example.clothingstorespring.repository.OrderRepository;
 import org.example.clothingstorespring.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -24,7 +28,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
 
-    @Override
+    @Transactional
     public Order createOrder(OrderDTO orderDTO) {
         if (orderDTO.getUser() == null || orderDTO.getUser().getId() == null) {
             throw new IllegalArgumentException("User must not be null");
@@ -35,13 +39,33 @@ public class OrderServiceImpl implements OrderService {
         order.setTotal(orderDTO.getTotal());
         order.setOrderDate(LocalDateTime.now());
         order.setStatus(OrderStatus.PENDING);
-
-
         order.setUser(orderDTO.getUser());
+        orderRepository.save(order);
+
+        PaymentDTO paymentDTO = orderDTO.getPayment();
+        if (paymentDTO != null) {
+            Payment payment = new Payment();
+            payment.setAmount(paymentDTO.getAmount());
+            payment.setMethod(paymentDTO.getMethod());
+            payment.setPaymentDate(paymentDTO.getPaymentDate());
+            payment.setOrder(order);
+            order.setPayment(payment);
+        }
+
+        DeliveryDTO deliveryDTO = orderDTO.getDelivery();
+        if (deliveryDTO != null) {
+            Delivery delivery = new Delivery();
+            delivery.setDeliveryAddress(deliveryDTO.getDeliveryAddress());
+            delivery.setDeliveryDate(deliveryDTO.getDeliveryDate());
+            delivery.setStatus(deliveryDTO.getStatus());
+            delivery.setDeliveryType(deliveryDTO.getDeliveryType());
+            delivery.setOrder(order);
+            order.setDelivery(delivery);
+        }
 
         return orderRepository.save(order);
-    }
 
+}
     @Transactional
     @Override
     public Order createOrder(OrderRequest orderRequest) {
@@ -74,5 +98,10 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public Order findOrderById(Long orderId) {
         return orderRepository.findById(orderId).orElseThrow(() -> new IllegalArgumentException("Order not found with id: " + orderId));
+    }
+
+    @Override
+    public void deleteOrder(Order order) {
+        orderRepository.delete(order);
     }
 }
