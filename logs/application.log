@@ -6870,3 +6870,59 @@ Caused by: org.hibernate.AnnotationException: Property 'org.example.clothingstor
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
 	... 15 common frames omitted
+2024-11-27 04:08:42 - Starting ClothingStoreSpringApplication using Java 17.0.13 with PID 8612 (C:\Users\Administrator\IdeaProjects\ClothingStoreSpringA2\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\ClothingStoreSpringA2)
+2024-11-27 04:08:42 - No active profile set, falling back to 1 default profile: "default"
+2024-11-27 04:08:43 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-27 04:08:43 - Finished Spring Data repository scanning in 83 ms. Found 9 JPA repository interfaces.
+2024-11-27 04:08:43 - Tomcat initialized with port 8080 (http)
+2024-11-27 04:08:43 - Starting service [Tomcat]
+2024-11-27 04:08:43 - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-11-27 04:08:43 - Initializing Spring embedded WebApplicationContext
+2024-11-27 04:08:43 - Root WebApplicationContext: initialization completed in 1370 ms
+2024-11-27 04:08:43 - HikariPool-1 - Starting...
+2024-11-27 04:08:44 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@750ed637
+2024-11-27 04:08:44 - HikariPool-1 - Start completed.
+2024-11-27 04:08:44 - Reading from public.databasechangelog
+2024-11-27 04:08:44 - Database is up to date, no changesets to execute
+2024-11-27 04:08:44 - Reading from public.databasechangelog
+2024-11-27 04:08:44 - UPDATE SUMMARY
+2024-11-27 04:08:44 - Run:                          0
+2024-11-27 04:08:44 - Previously run:               3
+2024-11-27 04:08:44 - Filtered out:                 0
+2024-11-27 04:08:44 - -------------------------------
+2024-11-27 04:08:44 - Total change sets:            3
+2024-11-27 04:08:44 - Update summary generated
+2024-11-27 04:08:44 - Successfully released change log lock
+2024-11-27 04:08:44 - Command execution complete
+2024-11-27 04:08:44 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-27 04:08:44 - HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-11-27 04:08:44 - HHH000026: Second-level cache disabled
+2024-11-27 04:08:45 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-27 04:08:45 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-11-27 04:08:46 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-27 04:08:46 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-27 04:08:46 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-27 04:08:46 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-27 04:08:46 - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-27 04:08:47 - Tomcat started on port 8080 (http) with context path '/'
+2024-11-27 04:08:47 - Started ClothingStoreSpringApplication in 5.346 seconds (process running for 5.931)
+2024-11-27 04:09:05 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-27 04:09:05 - Initializing Servlet 'dispatcherServlet'
+2024-11-27 04:09:05 - Completed initialization in 1 ms
+2024-11-27 04:09:05 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=null, material=COTTON, color=BLUE, hasHood=true
+2024-11-27 04:09:05 - Ошибка при добавлении куртки: Size cannot be null or empty
+2024-11-27 04:09:33 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=0, size=null, material=COTTON, color=BLUE, hasHood=true
+2024-11-27 04:09:33 - Ошибка при добавлении куртки: Price must be greater than zero
+2024-11-27 04:09:50 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unexpected character (',' (code 44)): expected a value]
+2024-11-27 04:09:59 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=null, material=COTTON, color=BLUE, hasHood=true
+2024-11-27 04:09:59 - Ошибка при добавлении куртки: Size cannot be null or empty
+2024-11-27 04:10:14 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unrecognized token 'm': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false')]
+2024-11-27 04:10:31 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=M, material=COTTON, color=BLUE, hasHood=true
+2024-11-27 04:10:41 - Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot coerce empty String ("") to `org.example.clothingstorespring.model.Material` value (but could if coercion was enabled using `CoercionConfig`)]
+2024-11-27 04:10:56 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=M, material=null, color=BLUE, hasHood=true
+2024-11-27 04:10:56 - Ошибка при добавлении куртки: Material cannot be null
+2024-11-27 04:11:59 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=M, material=null, color=null, hasHood=true
+2024-11-27 04:11:59 - Ошибка при добавлении куртки: Material cannot be null
+2024-11-27 04:12:19 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=M, material=COTTON, color=null, hasHood=true
+2024-11-27 04:12:19 - Ошибка при добавлении куртки: Color cannot be null
+2024-11-27 04:12:35 - Received jacket data: name=Paka Rabana, brand=Brand PR, price=199.99, size=M, material=COTTON, color=BLUE, hasHood=true
