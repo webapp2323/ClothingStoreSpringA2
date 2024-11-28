@@ -24,3 +24,24 @@ A new resource was created successfully.
 "hasHood": true,
 "message": "Jacket added successfully!"
 }
+
+POST http://localhost:8080/api/pants/add
+{
+"name": "Pants Rants",
+"brand": "Brand PRPants",
+"price": 22.99,
+"size": "M",
+"material": "COTTON",
+"color": "BLUE"
+}
+
+{
+"id": 7,
+"name": "Pants Rants",
+"brand": "Brand PRPants",
+"price": 22.99,
+"size": "M",
+"color": "BLUE",
+"material": "COTTON",
+"message": "Pants added successfully!"
+}

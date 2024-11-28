@@ -27,22 +27,22 @@ public class AddJacketDTO {
     private String name;
 
 
-    private BigDecimal price; // Цена, используйте BigDecimal для точности с деньгами
+    private BigDecimal price;
 
 
-    private String brand; // Бренд куртки
+    private String brand;
 
 
-    private Size size; // Размер куртки, убедитесь, что класс Size определен
+    private Size size;
 
 
-    private Material material; // Материал куртки, убедитесь, что класс Material определен
+    private Material material;
 
 
-    private Color color; // Цвет куртки, убедитесь, что класс Color определен
+    private Color color;
 
     @JsonProperty("has_Hood")
-    private boolean hasHood; // Наличие капюшона
+    private boolean hasHood;
 
     @PostConstruct
     public void logData() {

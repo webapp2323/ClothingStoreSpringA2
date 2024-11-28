@@ -18,23 +18,11 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class AddPantsDTO {
 
-    @JsonProperty("name")
     private String name;
-
-    @JsonProperty("brand")
     private String brand;
-
-    @JsonProperty("price")
     private BigDecimal price;
-
-    @JsonProperty("sleeveType")
-    private SleeveType sleeveType;
-
-    @JsonProperty("size")
     private Size size;
-
-    @JsonProperty("material")
     private Material material;
-
+    private String color;
 }
 

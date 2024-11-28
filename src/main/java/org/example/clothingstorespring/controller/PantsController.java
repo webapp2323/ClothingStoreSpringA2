@@ -1,20 +1,25 @@
 package org.example.clothingstorespring.controller;
 
 
-import org.example.clothingstorespring.model.Jacket;
-import org.example.clothingstorespring.model.Pants;
+import org.example.clothingstorespring.dto.AddPantsDTO;
+
+import org.example.clothingstorespring.dto.AddPantsResponseDTO;
+
 import org.example.clothingstorespring.service.PantsService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
+
 
 @RestController
 @RequestMapping("api/pants")
 public class PantsController {
 
-
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
     private final PantsService pantsService;
 
 
@@ -28,19 +33,31 @@ public class PantsController {
 //        return service.getAllPants();
 //    }
 
-//    @PostMapping("/add")
-//    public void addPants(@RequestBody Pants pants) {
-//        service.addPants(pants);
-//    }
 
     @PostMapping("/add")
-    public ResponseEntity<Pants> addPants(@RequestBody Pants pants) {
+    public ResponseEntity<?> addPants(@RequestBody AddPantsDTO pantsDTO) {
+
+        logger.info("Received pants data: name={}, brand={}, price={}, size={}, material={}, color={}",
+                pantsDTO.getName(),
+                pantsDTO.getBrand(),
+                pantsDTO.getPrice(),
+                pantsDTO.getSize(),
+                pantsDTO.getMaterial(),
+                pantsDTO.getColor());
+
         try {
-            Pants savedPants = pantsService.addPants(pants);
+            AddPantsResponseDTO savedPants = pantsService.addPants(pantsDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedPants);
+
+        } catch (IllegalArgumentException e) {
+            logger.error("Ошибка при добавлении куртки: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse("Validation error: " + e.getMessage()));
+
         } catch (Exception e) {
-            e.printStackTrace(); // Вывод ошибки в консоль
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            logger.error("Неизвестная ошибка: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Internal server error: " + e.getMessage()));
         }
     }
 }

@@ -14,4 +14,7 @@ public class Pants extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
     private Material material;
+
+    @Enumerated(EnumType.STRING)
+    private Color color;
 }

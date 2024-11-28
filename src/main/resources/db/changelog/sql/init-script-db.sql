@@ -29,11 +29,13 @@ CREATE TABLE IF NOT EXISTS pants (
                                      brand VARCHAR(255) NOT NULL,
                                      price NUMERIC(10, 2) NOT NULL,
                                      size VARCHAR(50) NOT NULL,
+                                     color VARCHAR(50) NOT NULL,
                                      material VARCHAR(50) NOT NULL
 );
 
-INSERT INTO pants (name, brand, price, size, material) VALUES
-('Casual Pants', 'Brand A', 39.99, 'M', 'COTTON'),         ('Formal Pants', 'Brand B', 59.99, 'L', 'POLYESTER'),     ('Sport Pants', 'Brand C', 49.99, 'S', 'DENIM'),           ('Winter Pants', 'Brand D', 79.99, 'XL', 'COTTON'),        ('Chino Pants', 'Brand E', 45.00, 'M', 'COTTON');
+INSERT INTO pants (name, brand, price, size, color,material) VALUES
+('Casual Pants', 'Brand A', 39.99, 'M','RED',  'COTTON'),         ('Formal Pants', 'Brand B', 59.99, 'L','BLUE', 'POLYESTER'),     ('Sport Pants', 'Brand C', 49.99, 'S', 'GREEN', 'DENIM'),
+('Winter Pants', 'Brand D', 79.99, 'XL', 'YELLOW', 'COTTON'),        ('Chino Pants', 'Brand E', 45.00, 'M','BLACK', 'COTTON');
 
 CREATE TABLE IF NOT EXISTS shirt (
                                      id SERIAL PRIMARY KEY,
