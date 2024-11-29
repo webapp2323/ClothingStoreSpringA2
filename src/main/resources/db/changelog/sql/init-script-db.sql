@@ -43,12 +43,13 @@ CREATE TABLE IF NOT EXISTS shirt (
                                      brand VARCHAR(255) NOT NULL,
                                      price NUMERIC(10, 2) NOT NULL,
                                      size VARCHAR(20) NOT NULL,
+                                     color VARCHAR(50) NOT NULL,
                                      material VARCHAR(255) NOT NULL,
                                      sleeve_type VARCHAR(100) NOT NULL
 );
 
-INSERT INTO shirt (name, brand, price, sleeve_type, size, material) VALUES
-('Casual Shirt', 'Brand A', 29.99, 'LONG', 'M', 'COTTON'), ('Formal Shirt', 'Brand B', 49.99, 'SHORT', 'L', 'POLYESTER'), ('T-Shirt', 'Brand C', 19.99, 'SLEEVELESS', 'S', 'NYLON'),('Polo Shirt', 'Brand D', 35.00, 'SHORT', 'XL', 'DENIM'),            ('Dress Shirt', 'Brand E', 59.99, 'LONG', 'M', 'WOOL'),('Lightweight Shirt', 'Brand F', 24.99, 'LONG', 'S', 'LINEN'),                                            ('Business Casual Shirt', 'Brand G', 45.00, 'SHORT', 'M', 'COTTON'),('Graphic Tee', 'Brand H', 15.99, 'SLEEVELESS', 'L', 'COTTON'),('Classic Polo', 'Brand I', 32.50, 'SHORT', 'XL', 'POLYESTER'),                     ('Evening Dress Shirt', 'Brand J', 67.49, 'LONG', 'L', 'VINYL');
+INSERT INTO shirt (name, brand, price, sleeve_type, size, material,color) VALUES
+('Casual Shirt', 'Brand A', 29.99, 'LONG', 'M', 'COTTON', 'GRAY'), ('Formal Shirt', 'Brand B', 49.99, 'SHORT', 'L', 'POLYESTER', 'RED'), ('T-Shirt', 'Brand C', 19.99, 'SLEEVELESS', 'S', 'NYLON', 'BLUE'),('Polo Shirt', 'Brand D', 35.00, 'SHORT', 'XL', 'DENIM','GREEN'),            ('Dress Shirt', 'Brand E', 59.99, 'LONG', 'M', 'WOOL','YELLOW'),('Lightweight Shirt', 'Brand F', 24.99, 'LONG', 'S', 'LINEN','BLACK'),                                            ('Business Casual Shirt', 'Brand G', 45.00, 'SHORT', 'M', 'COTTON','WHITE'),('Graphic Tee', 'Brand H', 15.99, 'SLEEVELESS', 'L', 'COTTON',' ORANGE'),('Classic Polo', 'Brand I', 32.50, 'SHORT', 'XL', 'POLYESTER','PURPLE'),                     ('Evening Dress Shirt', 'Brand J', 67.49, 'LONG', 'L', 'VINYL','PINK');
 
 
 CREATE TABLE IF NOT EXISTS store (

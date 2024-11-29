@@ -3,9 +3,13 @@ package org.example.clothingstorespring.controller;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
+import org.example.clothingstorespring.dto.AddShirtDTO;
+import org.example.clothingstorespring.dto.AddShirtResponseDTO;
 import org.example.clothingstorespring.model.Pants;
 import org.example.clothingstorespring.model.Shirt;
 import org.example.clothingstorespring.service.ShirtService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,76 +31,38 @@ import java.util.Optional;
 @Slf4j
 @ToString
 @RestController
-@RequestMapping("/api/v1/shirts")
+@RequestMapping("/api/shirts")
 @AllArgsConstructor
 public class ShirtController {
 
     private final ShirtService shirtService;
+    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
 
-//    @GetMapping
-//    public ResponseEntity<List<Shirt>> getAllShirts() {
-//        log.info("Received request to get all shirts");
-//        List<Shirt> shirts = shirtService.getAllShirts();
-//        log.info("Returning {} shirts", Optional.of(shirts.size()));
-//        return ResponseEntity.ok(shirts);
-//    }
-//
-//
-//
-//    @GetMapping("/search")
-//    public ResponseEntity<List<Shirt>> getShirtsByIds(@RequestParam List<Long> ids) {
-//        log.info("Received request to get shirts by ids: {}", ids);
-//
-//        if (ids.isEmpty()) {
-//            log.warn("No ids provided in the request.");
-//            return ResponseEntity.badRequest().body(null);
-//        }
-//
-//        List<Shirt> shirts = shirtService.getShirtsByIds(ids);
-//
-//        if (shirts.isEmpty()) {
-//            log.info("No shirts found for the provided ids: {}", ids);
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        // Логируем информацию о каждой найденной рубашке
-//        for (Shirt shirt : shirts) {
-//            log.info("Shirt found: {}", shirt);
-//        }
-//
-//        log.info("Found {} shirts for the provided ids: {}", Optional.of(Optional.of(shirts.size())), ids);
-//
-//        return ResponseEntity.ok(shirts);
-//    }
-//
-
-
-//    @PostMapping("/add")
-//    public ResponseEntity<Void> addShirts(@RequestBody List<Shirt> shirts) {
-//        // Логируем информацию о полученных рубашках
-//        log.info("Received request to add shirts: {}", shirts);
-//
-//        try {
-//            for (Shirt shirt : shirts) {
-//                shirtService.addShirt(shirt); // Добавление каждой рубашки в сервис
-//                log.info("Shirt successfully added: {}", shirt); // Логируем успешное добавление каждой рубашки
-//            }
-//
-//            log.info("200 OK: Request successful. The server has responded as required.");
-//            return ResponseEntity.ok().build(); // Возвращаем 200 OK
-//        } catch (Exception e) {
-//            log.error("Error adding shirts: {}", e.getMessage());
-//            return ResponseEntity.status(500).build(); // Возвращаем 500 Internal Server Error
-//        }
-//    }
     @PostMapping("/add")
-    public ResponseEntity<Shirt> addShirt(@RequestBody Shirt shirt) {
+    public ResponseEntity<?> addShirt(@RequestBody AddShirtDTO shirtDTO) {
+
+        logger.info("Received shirt data: name={}, brand={}, price={}, size={}, material={}, color={},sleeve_type={}",
+                shirtDTO.getName(),
+                shirtDTO.getBrand(),
+                shirtDTO.getPrice(),
+                shirtDTO.getSize(),
+                shirtDTO.getMaterial(),
+                shirtDTO.getColor(),
+                shirtDTO.getSleeve_type());
+
         try {
-            Shirt savedShirt = shirtService.addShirt(shirt);
+            AddShirtResponseDTO savedShirt = shirtService.addShirt(shirtDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedShirt);
+
+        } catch (IllegalArgumentException e) {
+            logger.error("Ошибка при добавлении куртки: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(new ErrorResponse("Validation error: " + e.getMessage()));
+
         } catch (Exception e) {
-            e.printStackTrace(); // Вывод ошибки в консоль
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            logger.error("Неизвестная ошибка: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ErrorResponse("Internal server error: " + e.getMessage()));
         }
     }
 }

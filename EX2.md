@@ -45,3 +45,27 @@ POST http://localhost:8080/api/pants/add
 "material": "COTTON",
 "message": "Pants added successfully!"
 }
+
+POST http://localhost:8080/api/shirts/add
+{
+"name": "Shirts Shirts",
+"brand": "Brand Shirts",
+"price": 12.99,
+"size": "M",
+"material": "DENIM",
+"color": "GRAY",
+"sleeve_type": "LONG"
+}
+201 Created
+A new resource was created successfully.
+{
+"id": 19,
+"name": "Shirts Shirts",
+"brand": "Brand Shirts",
+"price": 12.99,
+"size": "M",
+"color": "GRAY",
+"material": "DENIM",
+"sleeve_type": "LONG",
+"message": "shirt added successfully !"
+}

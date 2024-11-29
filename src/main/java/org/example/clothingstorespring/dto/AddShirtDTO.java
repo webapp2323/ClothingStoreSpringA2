@@ -8,25 +8,21 @@ import lombok.Setter;
 import org.example.clothingstorespring.model.Color;
 import org.example.clothingstorespring.model.Material;
 import org.example.clothingstorespring.model.Size;
+import org.example.clothingstorespring.model.SleeveType;
+
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddShirtDTO {
-
-
-
-    @JsonProperty("size")
+    private String name;
+    private String brand;
+    private BigDecimal price;
     private Size size;
-
-    @JsonProperty("material")
-    private Material material;
-
-    @JsonProperty("color")
     private Color color;
-
-    @JsonProperty("has_Hood")
-    private boolean hasHood;
+    private Material material;
+    private SleeveType sleeve_type;
 
 }
