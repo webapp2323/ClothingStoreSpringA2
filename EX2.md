@@ -56,6 +56,7 @@ POST http://localhost:8080/api/shirts/add
 "color": "GRAY",
 "sleeve_type": "LONG"
 }
+
 201 Created
 A new resource was created successfully.
 {
