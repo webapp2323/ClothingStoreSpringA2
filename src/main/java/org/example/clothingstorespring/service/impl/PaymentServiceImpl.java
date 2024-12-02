@@ -92,4 +92,14 @@ public class PaymentServiceImpl implements PaymentService {
         log.info("Payment created successfully: {}", savedPayment);
         return savedPayment;
     }
+
+    @Override
+    public List<Payment> findPaymentsOlderThan(LocalDate date) {
+        return paymentRepository.findByPaymentDateBefore(date.atStartOfDay());
+    }
+
+    @Override
+    public void deletePayment(Payment payment) {
+        paymentRepository.delete(payment);
+    }
 }

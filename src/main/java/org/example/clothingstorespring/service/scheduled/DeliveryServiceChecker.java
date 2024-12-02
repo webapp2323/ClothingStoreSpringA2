@@ -1,6 +1,7 @@
 package org.example.clothingstorespring.service.scheduled;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.clothingstorespring.model.Delivery;
 import org.example.clothingstorespring.model.DeliveryStatus;
 import org.example.clothingstorespring.service.DeliveryService;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
@@ -24,23 +24,28 @@ public class DeliveryServiceChecker {
     }
 
     @Scheduled(cron = "0 0 * * * *") // кожну годину
-//     @Scheduled(fixedDelay = 10000) //Кожні 10 секунд
-    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_COMMITTED)
-    public void updateDeliveryStatus(){
+    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.READ_COMMITTED)
+    public void updateDeliveryStatus() {
         try {
-
             List<Delivery> pendingDeliveries = deliveryService.findAllPending();
 
+            // Логування стану чекаючих доставок
             if (pendingDeliveries.isEmpty()) {
+                log.info("No pending deliveries found.");
                 return;
+            } else {
+                log.info("Found {} pending deliveries:", pendingDeliveries.size());
+                pendingDeliveries.forEach(delivery -> log.info("Pending delivery ID: {}", delivery.getId()));
             }
 
             pendingDeliveries.forEach(delivery -> {
                 delivery.setStatus(DeliveryStatus.IN_TRANSIT);
                 deliveryService.save(delivery);
+                log.info("Updated delivery ID: {} to status: {}", delivery.getId(), DeliveryStatus.IN_TRANSIT);
             });
 
         } catch (Exception e) {
+            log.error("An error occurred while updating delivery status: {}", e.getMessage());
         }
     }
 }

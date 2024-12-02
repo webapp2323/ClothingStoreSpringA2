@@ -60,12 +60,15 @@ public class PaymentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Payment>> getAllPayments() {
+    public ResponseEntity<List<PaymentResponseDTO>> getAllPayments() {
         try {
             logger.info("Retrieving all payments");
             List<Payment> payments = paymentService.getAllPayments();
-            logger.info("Retrieved {} payments", payments.size());
-            return ResponseEntity.ok(payments);
+            List<PaymentResponseDTO> responseDTOs = payments.stream()
+                    .map(this::mapToResponseDTO)
+                    .toList();
+            logger.info("Retrieved {} payments", responseDTOs.size());
+            return ResponseEntity.ok(responseDTOs);
         } catch (Exception e) {
             logger.error("Error retrieving payments: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

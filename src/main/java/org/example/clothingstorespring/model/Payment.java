@@ -26,5 +26,7 @@ public class Payment {
 
     private BigDecimal amount;
     private String method;
+
+    @Column(name = "payment_date")
     private LocalDateTime paymentDate;
 }

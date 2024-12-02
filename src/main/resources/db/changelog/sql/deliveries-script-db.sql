@@ -1,6 +1,6 @@
 --liquibase formatted sql
 
---changeset Owl:added deliveries
+--changeset Owl:added-deliveries
 
 
 CREATE TABLE IF NOT EXISTS deliveries (
