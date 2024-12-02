@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.clothingstorespring.dto.AddShirtDTO;
 import org.example.clothingstorespring.dto.AddShirtResponseDTO;
+import org.example.clothingstorespring.model.Brand;
 import org.example.clothingstorespring.model.Shirt;
 import org.example.clothingstorespring.repository.ShirtRepository;
 import org.example.clothingstorespring.service.ShirtService;
@@ -67,7 +68,7 @@ public class ShirtServiceImpl implements ShirtService {
         shirt.setName(shirtDTO.getName());
         shirt.setMaterial(shirtDTO.getMaterial());
         shirt.setPrice(shirtDTO.getPrice());
-        shirt.setBrand(shirtDTO.getBrand());
+        shirt.setBrand(Brand.valueOf(shirtDTO.getBrand()));
         shirt.setColor(shirtDTO.getColor());
         shirt.setSize(shirtDTO.getSize());
         shirt.setSleeve_type(shirtDTO.getSleeve_type());

@@ -5,8 +5,8 @@ import lombok.Data;
 
 
 @Data
-@Entity
-@Table(name = "shirt")
+@Entity // Підклас, без @Table
+@DiscriminatorValue("SHIRT")
 public class Shirt extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
@@ -20,6 +20,10 @@ public class Shirt extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
     private Material material;
+
+    @Enumerated(EnumType.STRING)
+    private Brand brand;
+
 
     @Override
     public String toString() {

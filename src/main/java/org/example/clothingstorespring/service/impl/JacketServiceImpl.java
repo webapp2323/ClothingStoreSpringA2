@@ -2,7 +2,9 @@ package org.example.clothingstorespring.service.impl;
 
 import org.example.clothingstorespring.dto.AddJacketDTO;
 import org.example.clothingstorespring.dto.AddJacketResponseDTO;
+import org.example.clothingstorespring.model.Brand;
 import org.example.clothingstorespring.model.Jacket;
+import org.example.clothingstorespring.model.Size;
 import org.example.clothingstorespring.repository.JacketRepository;
 import org.example.clothingstorespring.service.JacketService;
 import org.springframework.stereotype.Service;
@@ -50,9 +52,9 @@ public class JacketServiceImpl implements JacketService {
         jacket.setName(jacketDTO.getName()); // Добавлено
         jacket.setMaterial(String.valueOf(jacketDTO.getMaterial()));
         jacket.setPrice(jacketDTO.getPrice());
-        jacket.setBrand(jacketDTO.getBrand());
+        jacket.setBrand(Brand.valueOf(jacketDTO.getBrand()));
         jacket.setColor(String.valueOf(jacketDTO.getColor()));
-        jacket.setSize(String.valueOf(jacketDTO.getSize()));
+        jacket.setSize(Size.valueOf(String.valueOf(jacketDTO.getSize())));
         jacket.setHasHood(jacketDTO.isHasHood()); // Исправлено: убедитесь, что используете правильное имя метода
 
         // Сохранение куртки в репозитории

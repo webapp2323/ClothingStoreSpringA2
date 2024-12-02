@@ -17,4 +17,7 @@ public class Pants extends ClothingItem {
 
     @Enumerated(EnumType.STRING)
     private Color color;
+
+    @Enumerated(EnumType.STRING) // Зберігаємо як рядок
+    private Brand brand;
 }

@@ -13,4 +13,7 @@ databaseChangeLog:
   - include:
        - file: db/changelog/sql/testold.sql
 
+  - include:
+      - file: db/changelog/sql/сreate-order-items.sql
+
 

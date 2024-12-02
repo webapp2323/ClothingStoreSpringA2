@@ -16,8 +16,8 @@ public class Jacket extends ClothingItem {
 
 
     @NotNull
-    private String brand;
-    private String size;
+    private Brand brand;
+    private Size size;
     private String color;
     private BigDecimal price;
     private String material;

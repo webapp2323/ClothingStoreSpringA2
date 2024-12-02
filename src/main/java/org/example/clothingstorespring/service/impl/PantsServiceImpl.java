@@ -3,6 +3,7 @@ package org.example.clothingstorespring.service.impl;
 
 import org.example.clothingstorespring.dto.AddPantsDTO;
 import org.example.clothingstorespring.dto.AddPantsResponseDTO;
+import org.example.clothingstorespring.model.Brand;
 import org.example.clothingstorespring.model.Color;
 import org.example.clothingstorespring.model.Pants;
 import org.example.clothingstorespring.model.Size;
@@ -57,7 +58,7 @@ public class PantsServiceImpl implements PantsService {
         pants.setName(pantsDTO.getName()); // Добавлено
         pants.setMaterial(pantsDTO.getMaterial());
         pants.setPrice(pantsDTO.getPrice());
-        pants.setBrand(pantsDTO.getBrand());
+        pants.setBrand(Brand.valueOf(pantsDTO.getBrand()));
         pants.setColor(Color.valueOf(pantsDTO.getColor()));
         pants.setSize(pantsDTO.getSize());
 

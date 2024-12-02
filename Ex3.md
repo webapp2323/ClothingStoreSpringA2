@@ -21,3 +21,89 @@ Payment cleanup triggered.
    2024-12-02 05:11:07 - Deleted payment with ID: 33
    2024-12-02 05:11:07 - Deleted payment with ID: 34
    2024-12-02 05:11:07 - Deleted 4 old payments.
+
+# Перевірка на роботу контроллера ItemController щодо роботи методу createOrderItems
+1. POST http://localhost:8080/api/order-items
+   [
+   {
+   "order": {"id": 1},
+   "clothingItem": {
+   "type": "shirt",
+   "id": 1,
+   "brand": "NIKE",  // Зверніть увагу на регістр
+   "size": "M"
+   },
+   "quantity": 3,
+   "unitPrice": 19.99
+   },
+   {
+   "order": {"id": 1},
+   "clothingItem": {
+   "type": "pants",
+   "id": 2,
+   "brand": "ADIDAS",  // Зверніть увагу на регістр
+   "size": "L"
+   },
+   "quantity": 2,
+   "unitPrice": 49.99
+   }
+   ]
+2. 201 Created
+   A new resource was created successfully.
+   [
+   {
+   "id": 9,
+   "order": {
+   "id": 1,
+   "customerName": null,
+   "total": null,
+   "orderDate": null,
+   "status": null,
+   "store": null,
+   "user": null,
+   "payment": null,
+   "delivery": null,
+   "orderItems": []
+   },
+   "clothingItem": {
+   "type": "shirt",
+   "id": 1,
+   "name": null,
+   "size": "M",
+   "price": null,
+   "brand": "NIKE",
+   "sleeve_type": null,
+   "color": null,
+   "material": null
+   },
+   "quantity": 3,
+   "unitPrice": 19.99
+   },
+   {
+   "id": 10,
+   "order": {
+   "id": 1,
+   "customerName": null,
+   "total": null,
+   "orderDate": null,
+   "status": null,
+   "store": null,
+   "user": null,
+   "payment": null,
+   "delivery": null,
+   "orderItems": []
+   },
+   "clothingItem": {
+   "type": "pants",
+   "id": 2,
+   "name": null,
+   "size": "L",
+   "price": null,
+   "brand": "ADIDAS",
+   "material": null,
+   "color": null
+   },
+   "quantity": 2,
+   "unitPrice": 49.99
+   }
+   ]
