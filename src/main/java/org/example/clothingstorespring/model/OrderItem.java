@@ -22,7 +22,6 @@ public class OrderItem {
     private ClothingItem clothingItem;
 
     private int quantity;
-    private BigDecimal unitPrice;
 
     }
 

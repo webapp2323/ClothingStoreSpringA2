@@ -10,7 +10,6 @@ public class PaymentCleanupController {
 
     private final PaymentCleanupService paymentCleanupService;
 
-    @Autowired
     public PaymentCleanupController(PaymentCleanupService paymentCleanupService) {
         this.paymentCleanupService = paymentCleanupService;
     }

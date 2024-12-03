@@ -6,9 +6,11 @@ import org.example.clothingstorespring.dto.OrderDTO;
 import org.example.clothingstorespring.dto.PaymentDTO;
 import org.example.clothingstorespring.model.Delivery;
 import org.example.clothingstorespring.model.Order;
+import org.example.clothingstorespring.model.OrderItem;
 import org.example.clothingstorespring.model.OrderRequest;
 import org.example.clothingstorespring.model.OrderStatus;
 import org.example.clothingstorespring.model.Payment;
+import org.example.clothingstorespring.repository.ClothingItemRepository;
 import org.example.clothingstorespring.repository.OrderRepository;
 import org.example.clothingstorespring.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -21,18 +23,20 @@ import java.util.List;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, ClothingItemRepository clothingItemRepository) {
         this.orderRepository = orderRepository;
+        this.clothingItemRepository = clothingItemRepository;
     }
 
     private final OrderRepository orderRepository;
-
+    private final ClothingItemRepository clothingItemRepository;
 
     @Transactional
     public Order createOrder(OrderDTO orderDTO) {
         if (orderDTO.getUser() == null || orderDTO.getUser().getId() == null) {
             throw new IllegalArgumentException("User must not be null");
         }
+
 
         Order order = new Order();
         order.setCustomerName(orderDTO.getCustomerName());
@@ -41,6 +45,14 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.PENDING);
         order.setUser(orderDTO.getUser());
         orderRepository.save(order);
+
+
+        OrderItem orderItem = new OrderItem();
+        orderItem.setClothingItem(clothingItemRepository.getById());
+        orderItem.setOrder(order);
+        orderItem.setQuantity();
+
+        orderItemRepository.save(orderItem);
 
         PaymentDTO paymentDTO = orderDTO.getPayment();
         if (paymentDTO != null) {

@@ -208,3 +208,238 @@ Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
 2024-11-28 05:56:46 - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-28 05:56:46 - HikariPool-1 - Shutdown initiated...
 2024-11-28 05:56:46 - HikariPool-1 - Shutdown completed.
+2024-12-03 17:19:11 - Starting ClothingStoreSpringApplication using Java 20.0.2.1 with PID 10592 (C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2\target\classes started by ostas in C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2)
+2024-12-03 17:19:11 - No active profile set, falling back to 1 default profile: "default"
+2024-12-03 17:19:14 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03 17:19:14 - Finished Spring Data repository scanning in 147 ms. Found 11 JPA repository interfaces.
+2024-12-03 17:19:15 - Tomcat initialized with port 8080 (http)
+2024-12-03 17:19:15 - Starting service [Tomcat]
+2024-12-03 17:19:15 - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-12-03 17:19:15 - Initializing Spring embedded WebApplicationContext
+2024-12-03 17:19:15 - Root WebApplicationContext: initialization completed in 4290 ms
+2024-12-03 17:19:16 - HikariPool-1 - Starting...
+2024-12-03 17:19:17 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+2024-12-03 17:19:17 - Stopping service [Tomcat]
+2024-12-03 17:19:17 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-03 17:19:17 - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at org.example.clothingstorespring.ClothingStoreSpringApplication.main(ClothingStoreSpringApplication.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	... 10 common frames omitted
+Caused by: liquibase.exception.UnexpectedLiquibaseException: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:259)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
+	... 17 common frames omitted
+Caused by: liquibase.exception.DatabaseException: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:251)
+	at liquibase.Scope.lambda$child$0(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:199)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:168)
+	at liquibase.Scope.child(Scope.java:256)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:242)
+	... 19 common frames omitted
+Caused by: org.postgresql.util.PSQLException: �����: ���� ������ "storespring" �� ����������
+	at org.postgresql.core.v3.QueryExecutorImpl.receiveErrorResponse(QueryExecutorImpl.java:2733)
+	at org.postgresql.core.v3.QueryExecutorImpl.readStartupMessages(QueryExecutorImpl.java:2845)
+	at org.postgresql.core.v3.QueryExecutorImpl.<init>(QueryExecutorImpl.java:176)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:323)
+	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:54)
+	at org.postgresql.jdbc.PgConnection.<init>(PgConnection.java:273)
+	at org.postgresql.Driver.makeConnection(Driver.java:446)
+	at org.postgresql.Driver.connect(Driver.java:298)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:137)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:360)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:202)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:461)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:550)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:98)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:246)
+	... 25 common frames omitted
+2024-12-03 17:37:28 - Starting ClothingStoreSpringApplication using Java 20.0.2.1 with PID 5800 (C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2\target\classes started by ostas in C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2)
+2024-12-03 17:37:28 - No active profile set, falling back to 1 default profile: "default"
+2024-12-03 17:37:28 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03 17:37:28 - Finished Spring Data repository scanning in 71 ms. Found 11 JPA repository interfaces.
+2024-12-03 17:37:29 - Tomcat initialized with port 8080 (http)
+2024-12-03 17:37:29 - Starting service [Tomcat]
+2024-12-03 17:37:29 - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-12-03 17:37:29 - Initializing Spring embedded WebApplicationContext
+2024-12-03 17:37:29 - Root WebApplicationContext: initialization completed in 1320 ms
+2024-12-03 17:37:29 - HikariPool-1 - Starting...
+2024-12-03 17:37:29 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5a14e60d
+2024-12-03 17:37:29 - HikariPool-1 - Start completed.
+2024-12-03 17:37:30 - Reading from public.databasechangelog
+2024-12-03 17:37:30 - Change failed validation!
+2024-12-03 17:37:30 - Logging exception.
+2024-12-03 17:37:30 - ERROR: Exception Details
+2024-12-03 17:37:30 - ERROR: Exception Primary Class:  ValidationFailedException
+2024-12-03 17:37:30 - ERROR: Exception Primary Reason:  Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+2024-12-03 17:37:30 - ERROR: Exception Primary Source:  4.27.0
+2024-12-03 17:37:30 - Command execution complete
+2024-12-03 17:37:30 - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+2024-12-03 17:37:30 - HikariPool-1 - Shutdown initiated...
+2024-12-03 17:37:30 - HikariPool-1 - Shutdown completed.
+2024-12-03 17:37:30 - Stopping service [Tomcat]
+2024-12-03 17:37:30 - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-12-03 17:37:30 - Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Failed to initialize dependency 'liquibase' of LoadTimeWeaverAware bean 'entityManagerFactory': Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:326)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:205)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:954)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:625)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:335)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1363)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1352)
+	at org.example.clothingstorespring.ClothingStoreSpringApplication.main(ClothingStoreSpringApplication.java:10)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1806)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:522)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:337)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:200)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:313)
+	... 10 common frames omitted
+Caused by: liquibase.exception.UnexpectedLiquibaseException: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:259)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1802)
+	... 17 common frames omitted
+Caused by: liquibase.exception.CommandExecutionException: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+	at liquibase.command.CommandScope.execute(CommandScope.java:257)
+	at liquibase.Liquibase.lambda$update$0(Liquibase.java:245)
+	at liquibase.Scope.lambda$child$0(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:199)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:168)
+	at liquibase.Liquibase.runInScope(Liquibase.java:1436)
+	at liquibase.Liquibase.update(Liquibase.java:234)
+	at liquibase.Liquibase.update(Liquibase.java:212)
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:297)
+	at liquibase.integration.spring.SpringLiquibase.lambda$afterPropertiesSet$0(SpringLiquibase.java:249)
+	at liquibase.Scope.lambda$child$0(Scope.java:190)
+	at liquibase.Scope.child(Scope.java:199)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:168)
+	at liquibase.Scope.child(Scope.java:256)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:242)
+	... 19 common frames omitted
+Caused by: liquibase.exception.ValidationFailedException: Validation Failed:
+     2 changesets check sum
+          db/changelog/sql/init-script-db.sql::init_script_DB::Owl was: 9:782aa47b4e122653f6d0a8b3890a64cc but is now: 9:e4f08eac8e726ce648536b968b1f2093
+          db/changelog/sql/orders-payments.sql::init1_script_DB::Owl was: 9:f25df915922fcca1dc8b17dd3caf3a2b but is now: 9:ec0335c10c05dfbfc93ce69f4817d7b3
+
+	at liquibase.changelog.DatabaseChangeLog.validate(DatabaseChangeLog.java:358)
+	at liquibase.command.core.helpers.DatabaseChangelogCommandStep.run(DatabaseChangelogCommandStep.java:92)
+	at liquibase.command.CommandScope.execute(CommandScope.java:219)
+	... 35 common frames omitted
+2024-12-03 17:38:28 - Starting ClothingStoreSpringApplication using Java 20.0.2.1 with PID 8824 (C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2\target\classes started by ostas in C:\Users\ostas\IdeaProjects\ClothingStoreSpringA2)
+2024-12-03 17:38:28 - No active profile set, falling back to 1 default profile: "default"
+2024-12-03 17:38:29 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-03 17:38:29 - Finished Spring Data repository scanning in 68 ms. Found 11 JPA repository interfaces.
+2024-12-03 17:38:29 - Tomcat initialized with port 8080 (http)
+2024-12-03 17:38:29 - Starting service [Tomcat]
+2024-12-03 17:38:29 - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2024-12-03 17:38:29 - Initializing Spring embedded WebApplicationContext
+2024-12-03 17:38:29 - Root WebApplicationContext: initialization completed in 1092 ms
+2024-12-03 17:38:30 - HikariPool-1 - Starting...
+2024-12-03 17:38:30 - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@501957bf
+2024-12-03 17:38:30 - HikariPool-1 - Start completed.
+2024-12-03 17:38:30 - Creating database history table with name: public.databasechangelog
+2024-12-03 17:38:30 - Reading from public.databasechangelog
+2024-12-03 17:38:30 - Successfully acquired change log lock
+2024-12-03 17:38:30 - Using deploymentId: 3240310577
+2024-12-03 17:38:30 - Reading from public.databasechangelog
+2024-12-03 17:38:30 - Running Changeset: db/changelog/sql/init-script-db.sql::init_script_DB::Owl
+2024-12-03 17:38:30 - Custom SQL executed
+2024-12-03 17:38:30 - ChangeSet db/changelog/sql/init-script-db.sql::init_script_DB::Owl ran successfully in 130ms
+2024-12-03 17:38:30 - Running Changeset: db/changelog/sql/orders-payments.sql::init1_script_DB::Owl
+2024-12-03 17:38:30 - Custom SQL executed
+2024-12-03 17:38:30 - ChangeSet db/changelog/sql/orders-payments.sql::init1_script_DB::Owl ran successfully in 20ms
+2024-12-03 17:38:30 - Running Changeset: db/changelog/sql/deliveries-script-db.sql::added-deliveries::Owl
+2024-12-03 17:38:30 - Custom SQL executed
+2024-12-03 17:38:30 - ChangeSet db/changelog/sql/deliveries-script-db.sql::added-deliveries::Owl ran successfully in 9ms
+2024-12-03 17:38:30 - Running Changeset: db/changelog/sql/testold.sql::test-old-payments::Owl
+2024-12-03 17:38:30 - Custom SQL executed
+2024-12-03 17:38:30 - ChangeSet db/changelog/sql/testold.sql::test-old-payments::Owl ran successfully in 3ms
+2024-12-03 17:38:30 - Running Changeset: db/changelog/sql/сreate-order-items.sql::create-clothing_items-order-items::Owl
+2024-12-03 17:38:30 - Custom SQL executed
+2024-12-03 17:38:30 - ChangeSet db/changelog/sql/сreate-order-items.sql::create-clothing_items-order-items::Owl ran successfully in 16ms
+2024-12-03 17:38:30 - UPDATE SUMMARY
+2024-12-03 17:38:30 - Run:                          5
+2024-12-03 17:38:30 - Previously run:               0
+2024-12-03 17:38:30 - Filtered out:                 0
+2024-12-03 17:38:30 - -------------------------------
+2024-12-03 17:38:30 - Total change sets:            5
+2024-12-03 17:38:30 - Update summary generated
+2024-12-03 17:38:30 - Update command completed successfully.
+2024-12-03 17:38:30 - Liquibase: Update has been successful. Rows affected: 62
+2024-12-03 17:38:30 - Successfully released change log lock
+2024-12-03 17:38:30 - Command execution complete
+2024-12-03 17:38:30 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-03 17:38:30 - HHH000412: Hibernate ORM core version 6.5.3.Final
+2024-12-03 17:38:30 - HHH000026: Second-level cache disabled
+2024-12-03 17:38:31 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-03 17:38:31 - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-12-03 17:38:32 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-03 17:38:32 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03 17:38:32 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-03 17:38:32 - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-12-03 17:38:32 - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-12-03 17:38:33 - Tomcat started on port 8080 (http) with context path '/'
+2024-12-03 17:38:33 - Started ClothingStoreSpringApplication in 4.949 seconds (process running for 5.513)
+2024-12-03 17:49:31 - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-03 17:49:31 - HikariPool-1 - Shutdown initiated...
+2024-12-03 17:49:31 - HikariPool-1 - Shutdown completed.

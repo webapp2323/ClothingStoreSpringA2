@@ -10,6 +10,7 @@ import org.example.clothingstorespring.model.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 @Getter
 @Setter
@@ -36,5 +37,8 @@ public class OrderDTO {
 
     @JsonProperty("delivery")
     private DeliveryDTO delivery;
+
+    private HashMap<Long, Integer> items;
+
 }
 
