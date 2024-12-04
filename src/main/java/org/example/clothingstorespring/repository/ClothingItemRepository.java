@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClothingItemRepository extends JpaRepository<ClothingItem, Long> {
-    // Додаткові методи запитів можна визначити тут, якщо потрібно
+
 }

@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/order-items")
 public class OrderItemController {
 
-    @Autowired
+
     private OrderItemService orderItemService;
 
     // Отримати всі OrderItems

@@ -11,54 +11,36 @@ import lombok.ToString;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Shirt.class, name = "shirt"),
-        @JsonSubTypes.Type(value = Pants.class, name = "pants"),
-        @JsonSubTypes.Type(value = Jacket.class, name = "jacket")
-})
 
-@Getter
-@Setter
 @Data
 @Entity
-@Table(name = "clothing_items") // Кореневий клас
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "clothing_items")
 
-public abstract class ClothingItem {
+public  class ClothingItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Size size;
+
+    @NotNull
     private BigDecimal price;
-    @JsonDeserialize(using = BrandDeserializer.class)
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Brand brand;
 
-    // Публічний конструктор без параметрів
-    public ClothingItem() {
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private ClothingItemType type;
+
     }
 
-    // Інші конструктори, геттери та сеттери
-    public ClothingItem(Long id, String name, String size, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.size = Size.valueOf(size);
-        this.price = price;
-    }
-
-    @Override
-    public String toString() {
-        return "ClothingItem{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", size='" + size + '\'' +
-                ", price=" + price +
-                '}';
-    }
-}
 
 

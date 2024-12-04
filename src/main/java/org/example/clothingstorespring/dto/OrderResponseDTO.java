@@ -1,5 +1,6 @@
 package org.example.clothingstorespring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,10 +16,19 @@ import java.time.LocalDateTime;
 @Setter
 public class OrderResponseDTO {
 
-    private Long id;
-    private String customerName;
-    private BigDecimal total;
-    private LocalDateTime orderDate;
-    private OrderStatus status;
 
+    private Long id;
+
+    @JsonProperty("customer_name")
+    private String customerName;
+
+
+    private BigDecimal total;
+
+    @JsonProperty("order_date")
+    private LocalDateTime orderDate;
+
+
+    private OrderStatus status;
 }
+
