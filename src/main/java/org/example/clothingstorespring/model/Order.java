@@ -8,108 +8,132 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    private String customerName;
+    @Entity
+    public class Order {
 
-    @Column(name = "total_amount")
-    private BigDecimal total;
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long id;
 
-    private LocalDateTime orderDate;
+        private String customerName;
 
-    @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+        @Column(name = "total_amount")
+        private BigDecimal total;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "store_id")
-    private Store store;
+        private LocalDateTime orderDate;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+        @Enumerated(EnumType.STRING)
+        private OrderStatus status;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Payment payment;
+        @ManyToOne(fetch = FetchType.LAZY)
+        @JoinColumn(name = "store_id")
+        private Store store;
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.PERSIST, orphanRemoval = true)
-    private Delivery delivery;
+        @ManyToOne
+        @JoinColumn(name = "user_id")
+        private User user;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> orderItems = new ArrayList<>();
+        @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+        private Payment payment;
 
-    // Метод для установки элементов заказа
-    public void setItems(List<OrderItem> orderItems) {
-        this.orderItems.clear(); // Очистить текущий список, если требуется
-        if (orderItems != null) {
-            for (OrderItem item : orderItems) {
-                item.setOrder(this); // Устанавливаем текущий объект Order в OrderItem
+        @OneToOne(mappedBy = "order", cascade = CascadeType.PERSIST, orphanRemoval = true)
+        private Delivery delivery;
+
+        @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<OrderItem> orderItems = new ArrayList<>();
+
+        // Метод для установки элементов заказа
+        public void setItems(List<OrderItem> orderItems) {
+            this.orderItems.clear(); // Очистить текущий список, если требуется
+            if (orderItems != null) {
+                for (OrderItem item : orderItems) {
+                    item.setOrder(this); // Устанавливаем текущий объект Order в OrderItem
+                }
+                this.orderItems.addAll(orderItems); // Добавляем новые элементы
             }
-            this.orderItems.addAll(orderItems); // Добавляем новые элементы
         }
-    }
 
-
-    // Метод для установки платежа
-    public void setPayment(Payment payment) {
-        if (payment != null) {
-            payment.setOrder(this); // Установить текущий объект Order в Payment
+        // Метод для установки платежа
+        public void setPayment(Payment payment) {
+            if (payment != null) {
+                payment.setOrder(this); // Установить текущий объект Order в Payment
+            }
+            this.payment = payment; // Установить платеж
         }
-        this.payment = payment; // Установить платеж
-    }
 
-    // Метод для установки доставки
-    public void setDelivery(Delivery delivery) {
-        if (delivery != null) {
-            delivery.setOrder(this); // Установить текущий объект Order в Delivery
+        // Метод для установки доставки
+        public void setDelivery(Delivery delivery) {
+            if (delivery != null) {
+                delivery.setOrder(this); // Установить текущий объект Order в Delivery
+            }
+            this.delivery = delivery; // Установить доставку
         }
-        this.delivery = delivery; // Установить доставку
-    }
 
-    // Метод для установки имени клиента
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName; // Устанавливаем имя клиента
-    }
+        // Геттер для id
+        public Long getId() {
+            return id; // Возвращаем значение идентификатора
+        }
 
-    // Метод для получения имени клиента
-    public String getCustomerName() {
-        return customerName; // Возвращаем имя клиента
-    }
+        // Геттеры и сеттеры для других полей (если необходимо)
+        public String getCustomerName() {
+            return customerName;
+        }
 
-    // Метод для установки общей суммы заказа
-    public void setTotal(BigDecimal total) {
-        this.total = total; // Устанавливаем общую сумму
-    }
+        public void setCustomerName(String customerName) {
+            this.customerName = customerName;
+        }
 
-    public void setOrderDate(LocalDateTime now) {
-        this.orderDate = now;
-    }
+        public BigDecimal getTotal() {
+            return total;
+        }
 
-    public void setStatus(OrderStatus orderStatus) {
-        this.status = orderStatus;
-    }
+        public void setTotal(BigDecimal total) {
+            this.total = total;
+        }
 
-    public OrderStatus getStatus() {
-        return status;
-}
+        public LocalDateTime getOrderDate() {
+            return orderDate;
+        }
 
-    public BigDecimal getTotal() {
-        return total;
-    }
+        public void setOrderDate(LocalDateTime orderDate) {
+            this.orderDate = orderDate;
+        }
 
-    public LocalDateTime getOrderDate() {
-        return orderDate;
-    }
+        public OrderStatus getStatus() {
+            return status;
+        }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+        public void setStatus(OrderStatus status) {
+            this.status = status;
+        }
 
-    public Long getId() {
-        return id;
-    }
-}
+        public Store getStore() {
+            return store;
+        }
+
+        public void setStore(Store store) {
+            this.store = store;
+        }
+
+        public User getUser() {
+            return user;
+        }
+
+        public void setUser(User user) {
+            this.user = user;
+        }
+
+        public Payment getPayment() {
+            return payment;
+        }
+
+        public Delivery getDelivery() {
+            return delivery;
+        }
+
+        public List<OrderItem> getOrderItems() {
+            return orderItems;
+        }
+    }//   }

@@ -43,10 +43,13 @@ public class OrderDTO {
     @JsonProperty("delivery")
     private DeliveryDTO delivery;
 
-    @JsonProperty("items") // Поле для хранения элементов одежды и их количества
+    @JsonProperty("items")
     @NotNull
-    private Map<Long, Integer> items; // Ключ: ID элемента одежды, Значение: количество
+    private Map<Long, Integer> items;
 
+    public Map<Long, Integer> getItems() {
+        return items;
+    }
 
 }
 
