@@ -36,3 +36,6 @@ INSERT INTO order_items (order_id, clothing_item_id, quantity, unit_price) VALUE
                                                                                (1, 2, 1, 49.99),  -- Додати 1 одиницю товару з id 2 до замовлення з id 1 за ціною 49.99
                                                                                (2, 1, 3, 29.99),  -- Додати 3 одиниці товару з id 1 до замовлення з id 2 за ціною 29.99
                                                                                (2, 3, 1, 39.99);  -- Додати 1 одиницю товару з id 3 до замовлення з id 2 за ціною 39.99
+
+-- SELECT * FROM order_items WHERE id = 1;
+-- SELECT column_name FROM information_schema.columns WHERE table_name = 'order_items';

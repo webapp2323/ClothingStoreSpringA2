@@ -68,28 +68,28 @@ public class ClothingItemServiceImpl implements ClothingItemService {
             throw new IllegalArgumentException("OrderDTO is not initialized.");
         }
 
-        // Перебираем элементы заказа из OrderDTO
+
         ClothingItem clothingItem = null;
         for (Map.Entry<Long, Integer> entry : orderDTO.getItems().entrySet()) {
             Long clothingId = entry.getKey();
             Integer quantity = entry.getValue();
 
-            // Находим элемент одежды по ID
+
             clothingItem = clothingItemRepository.findById(clothingId)
                     .orElseThrow(() -> new IllegalArgumentException("Clothing item not found with id: " + clothingId));
 
-            // Создаем новый элемент заказа
+
             OrderItem orderItem = new OrderItem();
             orderItem.setQuantity(quantity);
             orderItem.setClothingItem(clothingItem);
-            orderItem.setOrder(order); // Убедитесь, что order инициализирован
+            orderItem.setOrder(order);
 
-            // Сохраняем элемент заказа
+
             orderItemRepository.save(orderItem);
         }
 
-        // Верните последний clothingItem или измените логику возврата
-        return clothingItem; // Возвращает последний найденный элемент
+
+        return clothingItem;
     }
 }
 

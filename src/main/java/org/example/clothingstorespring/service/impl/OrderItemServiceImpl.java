@@ -64,4 +64,13 @@ public class OrderItemServiceImpl implements OrderItemService {
         logger.info("Creating order items: {}", orderItems);
         return orderItemRepository.saveAll(orderItems);
     }
-}
+
+    @Override
+    public OrderItem getOrderItemById(Long id) {
+        OrderItem orderItem = orderItemRepository.findById(id).orElse(null);
+        if (orderItem == null) {
+            logger.warn("OrderItem not found with ID: {}", id);
+        }
+        return orderItem;
+    }
+    }

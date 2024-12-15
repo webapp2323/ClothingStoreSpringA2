@@ -1,7 +1,7 @@
 --liquibase formatted sql
 
 --changeset owl:v6-create-clothingItem
-
+-- SELECT * FROM information_schema.tables WHERE table_name = 'order_items';
 -- DROP TABLE IF EXISTS "clothing_items";
 
 -- CREATE TABLE clothing_items (
@@ -12,8 +12,8 @@
 --                                 brand VARCHAR(50) NOT NULL,             -- Бренд товару (зберігається як рядок)
 --                                 type VARCHAR(50) NOT NULL               -- Тип товару (зберігається як рядок)
 -- );
---
---
+-- SELECT * FROM information_schema.tables WHERE table_name IN ('orders', 'clothing_items');
+-- --
 -- INSERT INTO clothing_items (name, size, price, brand, type) VALUES
 --                                                                 ('T-Shirt', 'M', 19.99, 'NIKE', 'SHIRT'),    -- Футболка за 19.99
 --                                                                 ('Jeans', 'L', 49.99, 'ADIDAS', 'PANTS'),    -- Джинси за 49.99
@@ -21,3 +21,4 @@
 --                                                                 ('Sweater', 'S', 39.99, 'UNDER_ARMOUR', 'SHIRT'), -- Светр за 39.99
 --                                                                 ('Cargo Pants', 'L', 59.99, 'NIKE', 'PANTS');  -- Кюлоты за 59.99
 --
+-- SELECT * FROM information_schema.tables WHERE table_name = 'order';

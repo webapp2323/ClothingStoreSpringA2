@@ -1,5 +1,7 @@
 package org.example.clothingstorespring.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,6 +14,7 @@ import java.util.List;
 
 @Data
     @Entity
+@Table(name = "\"orders\"")
     public class Order {
 
     @Id
@@ -30,6 +33,7 @@ import java.util.List;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
+    @JsonBackReference
     private Store store;
 
     @ManyToOne
@@ -43,6 +47,7 @@ import java.util.List;
     private Delivery delivery;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<OrderItem> orderItems = new ArrayList<>();
 
     // Метод для установки элементов заказа

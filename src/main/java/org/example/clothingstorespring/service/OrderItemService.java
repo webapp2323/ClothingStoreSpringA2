@@ -8,4 +8,6 @@ public interface OrderItemService {
     List<OrderItem> getAllOrderItems();
 
     List<OrderItem> createOrderItems(List<OrderItem> orderItems);
+
+    OrderItem getOrderItemById(Long id);
 }

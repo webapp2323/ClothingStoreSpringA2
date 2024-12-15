@@ -12,13 +12,24 @@ import java.util.List;
 @RequestMapping("/api/order-items")
 public class OrderItemController {
 
+    private final OrderItemService orderItemService;
 
-    private OrderItemService orderItemService;
+
+    public OrderItemController(OrderItemService orderItemService) {
+        this.orderItemService = orderItemService;
+    }
 
     // Отримати всі OrderItems
     @GetMapping
     public List<OrderItem> getAllOrderItems() {
         return orderItemService.getAllOrderItems();
+    }
+
+    // Отримати OrderItem за ID
+    @GetMapping("/{id}")
+    public ResponseEntity<OrderItem> getOrderItemById(@PathVariable Long id) {
+        OrderItem orderItem = orderItemService.getOrderItemById(id);
+        return orderItem != null ? ResponseEntity.ok(orderItem) : ResponseEntity.notFound().build();
     }
 
     // Додати нові OrderItems
