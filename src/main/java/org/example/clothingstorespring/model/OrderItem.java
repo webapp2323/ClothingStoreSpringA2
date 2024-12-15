@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -15,20 +16,26 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne // Зв'язок з ClothingItem
+    @ManyToOne
     @JoinColumn(name = "clothing_item_id", nullable = false)
     private ClothingItem clothingItem;
 
     private Integer quantity;
 
-    @ManyToOne // Зв'язок з Order
+    @ManyToOne
     @JoinColumn(name = "order_id", nullable = false)
     @JsonBackReference
     private Order order;
 
-    // Ви можете додати поле для ціни, якщо потрібно
+
     @Column(name = "unit_price", nullable = false)
-    private BigDecimal unitPrice; // Додайте поле для ціни
+    private BigDecimal unitPrice;
+
+    @Column(name = "created_date", nullable = false)
+    private LocalDateTime createdDate;
+
+    @Column(name = "status", nullable = false)
+    private String status;
 }
 
 

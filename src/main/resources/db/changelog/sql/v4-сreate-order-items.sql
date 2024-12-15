@@ -27,15 +27,17 @@ CREATE TABLE order_items (
                              clothing_item_id BIGINT,
                              quantity INT NOT NULL,
                              unit_price DECIMAL(10, 2) NOT NULL,
+                             created_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                             status VARCHAR(50) NOT NULL DEFAULT 'PENDING',  -- Доданий стовпець
                              FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
                              FOREIGN KEY (clothing_item_id) REFERENCES clothing_items(id) ON DELETE CASCADE
 );
 
-INSERT INTO order_items (order_id, clothing_item_id, quantity, unit_price) VALUES
-                                                                               (1, 1, 2, 29.99),  -- Додати 2 одиниці товару з id 1 до замовлення з id 1 за ціною 29.99
-                                                                               (1, 2, 1, 49.99),  -- Додати 1 одиницю товару з id 2 до замовлення з id 1 за ціною 49.99
-                                                                               (2, 1, 3, 29.99),  -- Додати 3 одиниці товару з id 1 до замовлення з id 2 за ціною 29.99
-                                                                               (2, 3, 1, 39.99);  -- Додати 1 одиницю товару з id 3 до замовлення з id 2 за ціною 39.99
+INSERT INTO order_items (order_id, clothing_item_id, quantity, unit_price, created_date) VALUES
+                                                                                             (1, 1, 2, 29.99, '2024-12-14 23:57:55'),  -- Зазначення дати створення
+                                                                                             (1, 2, 1, 49.99, '2024-12-14 23:57:55'),
+                                                                                             (2, 1, 3, 29.99, '2024-12-14 23:57:55'),
+                                                                                             (2, 3, 1, 39.99, '2024-12-14 23:57:55');  -- Додати 1 одиницю товару з id 3 до замовлення з id 2 за ціною 39.99
 
 -- SELECT * FROM order_items WHERE id = 1;
 -- SELECT column_name FROM information_schema.columns WHERE table_name = 'order_items';
