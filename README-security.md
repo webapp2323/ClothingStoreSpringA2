@@ -45,6 +45,7 @@
 📺 [**Урок 14 - JPA CRUD Подключение Java app к БД (JPA & Hibernate)** – YouTube](https://www.youtube.com/watch?v=IqWg4TEguRw&list=PLqj7-hRTFl_pNVKzrwDDPdv7rZkKQ05jy&index=15)
 
 
+#  jjkk
 
 </details>
 
