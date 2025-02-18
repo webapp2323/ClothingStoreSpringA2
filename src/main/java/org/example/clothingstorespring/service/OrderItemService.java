@@ -1,13 +1,14 @@
 package org.example.clothingstorespring.service;
 
+import org.example.clothingstorespring.dto.OrderItemDTO;
 import org.example.clothingstorespring.model.OrderItem;
 
 import java.util.List;
 
 public interface OrderItemService {
-    List<OrderItem> getAllOrderItems();
+    List<OrderItemDTO> getAllOrderItems();
 
-    List<OrderItem> createOrderItems(List<OrderItem> orderItems);
+    List<OrderItemDTO> createOrderItems(List<OrderItem> orderItems);
 
-    OrderItem getOrderItemById(Long id);
+    OrderItemDTO getOrderItemById(Long id);
 }

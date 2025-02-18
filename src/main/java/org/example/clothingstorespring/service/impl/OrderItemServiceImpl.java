@@ -1,5 +1,6 @@
 package org.example.clothingstorespring.service.impl;
 
+import org.example.clothingstorespring.dto.OrderItemDTO;
 import org.example.clothingstorespring.model.OrderItem;
 import org.example.clothingstorespring.repository.ClothingItemRepository;
 import org.example.clothingstorespring.repository.OrderItemRepository;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderItemServiceImpl implements OrderItemService {
@@ -30,13 +32,15 @@ public class OrderItemServiceImpl implements OrderItemService {
     private ClothingItemRepository clothingItemRepository;
 
     @Override
-    public List<OrderItem> getAllOrderItems() {
-        return orderItemRepository.findAll();
+    public List<OrderItemDTO> getAllOrderItems() {
+        List<OrderItem> orderItems = orderItemRepository.findAll();
+        return orderItems.stream().map(this::convertOrderItemToOrderItemDTO).collect(Collectors.toList());
+
     }
 
     @Transactional
     @Override
-    public List<OrderItem> createOrderItems(List<OrderItem> orderItems) {
+    public List<OrderItemDTO> createOrderItems(List<OrderItem> orderItems) {
         if (orderItems == null || orderItems.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Order items list cannot be null or empty");
         }
@@ -62,15 +66,25 @@ public class OrderItemServiceImpl implements OrderItemService {
         }
 
         logger.info("Creating order items: {}", orderItems);
-        return orderItemRepository.saveAll(orderItems);
+        orderItemRepository.saveAll(orderItems);
+        return orderItems.stream().map(this::convertOrderItemToOrderItemDTO).collect(Collectors.toList());
     }
 
     @Override
-    public OrderItem getOrderItemById(Long id) {
+    public OrderItemDTO getOrderItemById(Long id) {
         OrderItem orderItem = orderItemRepository.findById(id).orElse(null);
         if (orderItem == null) {
             logger.warn("OrderItem not found with ID: {}", id);
         }
-        return orderItem;
+         return convertOrderItemToOrderItemDTO(orderItem);
+
     }
+
+    private OrderItemDTO convertOrderItemToOrderItemDTO(OrderItem orderItem) {
+        OrderItemDTO orderItemDTO = new OrderItemDTO();
+        orderItemDTO.setOrderId(orderItem.getId());
+        orderItemDTO.setClothingItem(orderItem.getClothingItem());
+        orderItemDTO.setStatus(orderItem.getStatus());
+        return orderItemDTO;
     }
+}
