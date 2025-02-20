@@ -3,9 +3,9 @@
 --changeset Owl:create_promotion_clothing_item_table
 --preconditions onFail:MARK_RAN
 
---precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_name = 'promotion_clothing_itemn';
+--precondition-sql-check expectedResult:0 SELECT count(*) FROM information_schema.tables WHERE table_name = 'promotion_clothing_items';
 
-CREATE TABLE IF NOT EXISTS promotion_clothing_item (
+CREATE TABLE IF NOT EXISTS promotion_clothing_items (
                                                        promotion_id BIGINT NOT NULL,
                                                        clothing_item_id BIGINT NOT NULL,
                                                        PRIMARY KEY (promotion_id, clothing_item_id),
@@ -13,8 +13,8 @@ CREATE TABLE IF NOT EXISTS promotion_clothing_item (
     FOREIGN KEY (clothing_item_id) REFERENCES clothing_items(id)
     );
 
---changeset Owl:insert_promotion_clothing_item_values
-INSERT INTO promotion_clothing_item (promotion_id, clothing_item_id) VALUES
+--changeset Owl:insert_promotion_clothing_items_values
+INSERT INTO promotion_clothing_items (promotion_id, clothing_item_id) VALUES
                                                                          (1, 1),
                                                                          (1, 2),
                                                                          (2, 3),

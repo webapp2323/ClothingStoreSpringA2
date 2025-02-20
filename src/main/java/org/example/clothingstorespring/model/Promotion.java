@@ -1,6 +1,8 @@
 package org.example.clothingstorespring.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.validation.constraints.NotNull;
@@ -12,7 +14,9 @@ import java.util.Set;
  */
 @Data
 @Entity
-@Table(name = "promotions")
+@Table(name = "promotion")
+@Builder
+@AllArgsConstructor
 public class Promotion {
 
     @Id
@@ -39,6 +43,10 @@ public class Promotion {
             inverseJoinColumns = @JoinColumn(name = "clothing_item_id")
     )
     private Set<ClothingItem> clothingItems;
+
+    public Promotion() {
+
+    }
 
     @Override
     public String toString() {
