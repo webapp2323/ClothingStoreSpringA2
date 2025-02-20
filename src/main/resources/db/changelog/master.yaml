@@ -14,13 +14,13 @@ databaseChangeLog:
        - file: db/changelog/sql/testold.sql
 
   - include:
-      - file: db/changelog/sql/v4-сreate-order-items.sql
+      - file: db/changelog/sql/v4-сreate-clothin-items.sql
 
   - include:
-      - file: db/changelog/sql/v5-delete-old-tables.sql
+      - file: db/changelog/promotion/promotion-table.sql
 
-#  - include:
-#      - file: db/changelog/sql/v6-create-clothingItem.sql
+  - include:
+      - file: db/changelog/promotion/promotion_clothing_item.sql
 
 
 
