@@ -1,13 +1,9 @@
 package org.example.clothingstorespring.model;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -15,8 +11,7 @@ import java.math.BigDecimal;
 @Data
 @Entity
 @Table(name = "clothing_items")
-
-public  class ClothingItem {
+public class ClothingItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +35,21 @@ public  class ClothingItem {
     @Enumerated(EnumType.STRING)
     private ClothingItemType type;
 
+    // Конструктор
+    public ClothingItem(Long id, String name, Size size, BigDecimal price, Brand brand, ClothingItemType type) {
+        this.id = id;
+        this.name = name;
+        this.size = size;
+        this.price = price;
+        this.brand = brand;
+        this.type = type;
     }
+
+    public ClothingItem() {
+
+    }
+}
+
 
 
 

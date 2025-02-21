@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.experimental.FieldDefaults;
 import org.example.clothingstorespring.model.ClothingItem;
 import org.example.clothingstorespring.model.PromotionType;
+import org.example.clothingstorespring.service.impl.ClothingItemDTO;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -22,7 +23,10 @@ public class PromotionDTO {
     double discount;
     LocalDate startDate;
     LocalDate endDate;
-    Set<ClothingItem> clothingItems;
-}
+    private Set<ClothingItemDTO> clothingItems;
+
+
+    }
+
 
 
