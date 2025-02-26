@@ -23,40 +23,54 @@ public class PromotionController {
 
     @PostMapping("/add")
     public Promotion addPromotion(@RequestBody PromotionDTO promotionDTO) {
-        Promotion promotion = new Promotion();
-        // Заполнение полей из promotionDTO
-        promotion.setName(promotionDTO.getName());
-        promotion.setDescription(promotionDTO.getDescription());
-        promotion.setType(promotionDTO.getType());
-        promotion.setDiscount(promotionDTO.getDiscount());
-        promotion.setStartDate(promotionDTO.getStartDate().atStartOfDay());
-        promotion.setEndDate(promotionDTO.getEndDate().atStartOfDay());
-        promotion.setClothingItems(convertToEntity(promotionDTO.getClothingItems())); // Преобразование clothing items
-        
-        promotionService.addPromotion(promotion);
-        log.info("Added new promotion: " + promotion);
-        return promotion;
+        try {
+            if (promotionDTO.getStartDate().isAfter(promotionDTO.getEndDate())) {
+
+                throw new IllegalArgumentException("Дата закінчення не може бути раніше дати початку.");
+            }
+
+            if (promotionDTO.getDiscount() < 0 || promotionDTO.getDiscount() > 100) {
+                throw new IllegalArgumentException("Знижка повинна бути в межах від 0 до 100.");
+            }
+
+            Promotion promotion = new Promotion();
+            promotion.setName(promotionDTO.getName());
+            promotion.setDescription(promotionDTO.getDescription());
+            promotion.setType(promotionDTO.getType());
+            promotion.setDiscount(promotionDTO.getDiscount());
+            promotion.setStartDate(promotionDTO.getStartDate().atStartOfDay());
+            promotion.setEndDate(promotionDTO.getEndDate().atStartOfDay());
+
+            promotion.setClothingItems(convertToEntity(promotionDTO.getClothingItems()));
+
+            promotionService.addPromotion(promotion);
+            log.info("Added new promotion: " + promotion);
+            return promotion;
+
+        } catch (IllegalArgumentException e) {
+            log.error("Validation error: " + e.getMessage());
+            throw e;
+        }
     }
 
     @DeleteMapping("/delete/{id}")
     public void deletePromotion(@PathVariable Long id) {
-        Promotion existingPromotion = promotionService.getPromotionById(id); // Получаем акцию по ID
-        if (existingPromotion == null) { // Проверяем, существует ли акция
+        Promotion existingPromotion = promotionService.getPromotionById(id);
+        if (existingPromotion == null) {
             log.info("Promotion not found for ID: " + id);
             throw new EntityNotFoundException("Promotion not found for ID: " + id);
         }
-        // Логируем содержание удаляемой записи
+
         log.info("Deleting promotion: " + existingPromotion);
-        promotionService.deletePromotion(id); // Удаляем акцию
+        promotionService.deletePromotion(id);
         log.info("Deleted promotion with ID: " + id);
     }
 
     @PutMapping("/update/{id}")
     public Promotion updatePromotion(@PathVariable Long id, @RequestBody PromotionDTO promotionDTO) {
+
         Promotion existingPromotion = promotionService.getPromotionById(id);
-
         log.info("Existing promotion before update: " + existingPromotion);
-
         existingPromotion.setName(promotionDTO.getName());
         existingPromotion.setDescription(promotionDTO.getDescription());
         existingPromotion.setType(promotionDTO.getType());
@@ -66,9 +80,7 @@ public class PromotionController {
         existingPromotion.setClothingItems(convertToEntity(promotionDTO.getClothingItems()));
 
         Promotion updatedPromotion = promotionService.updatePromotion(id, existingPromotion);
-
         log.info("Updated promotion: " + updatedPromotion);
-
         return updatedPromotion;
     }
 

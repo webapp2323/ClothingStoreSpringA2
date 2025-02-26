@@ -21,11 +21,11 @@ import java.util.Map;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
-    private final ClothingItemService clothingItemService; // Добавьте сервис для получения ClothingItem
+    private final ClothingItemService clothingItemService;
 
     public OrderServiceImpl(OrderRepository orderRepository, ClothingItemService clothingItemService) {
         this.orderRepository = orderRepository;
-        this.clothingItemService = clothingItemService; // Инициализация сервиса
+        this.clothingItemService = clothingItemService;
     }
 
     @Transactional
@@ -34,12 +34,12 @@ public class OrderServiceImpl implements OrderService {
             throw new IllegalArgumentException("User must not be null");
         }
 
-        Order order = convertToOrder(orderDTO); // Используем метод для преобразования
+        Order order = convertToOrder(orderDTO);
 
-        // Сохранить заказ в репозитории
+
         orderRepository.save(order);
 
-        // Обработка платежа
+
         PaymentDTO paymentDTO = orderDTO.getPayment();
         if (paymentDTO != null) {
             Payment payment = new Payment();
@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
             order.setPayment(payment);
         }
 
-        // Обработка доставки
+
         DeliveryDTO deliveryDTO = orderDTO.getDelivery();
         if (deliveryDTO != null) {
             Delivery delivery = new Delivery();
@@ -75,18 +75,18 @@ public class OrderServiceImpl implements OrderService {
         order.setCustomerName(orderDTO.getCustomerName());
         order.setTotal(orderDTO.getTotal());
         order.setOrderDate(LocalDateTime.now());
-        order.setStatus(OrderStatus.PENDING); // Установите статус по умолчанию
-        order.setUser(orderDTO.getUser()); // Установите пользователя
+        order.setStatus(OrderStatus.PENDING);
+        order.setUser(orderDTO.getUser());
 
-        // Преобразование items в список OrderItem
+
         List<OrderItem> orderItems = new ArrayList<>();
         for (Map.Entry<Long, Integer> entry : orderDTO.getItems().entrySet()) {
             OrderItem orderItem = new OrderItem();
-            orderItem.setClothingItem(clothingItemService.findById(entry.getKey())); // Получите ClothingItem по ID
+            orderItem.setClothingItem(clothingItemService.findById(entry.getKey())); //
             orderItem.setQuantity(entry.getValue());
             orderItems.add(orderItem);
         }
-        order.setItems(orderItems); // Установите список orderItems в заказ
+        order.setItems(orderItems);
         return order;
     }
 

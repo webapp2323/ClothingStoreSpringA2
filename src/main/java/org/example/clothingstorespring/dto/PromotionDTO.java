@@ -24,9 +24,7 @@ public class PromotionDTO {
     LocalDate startDate;
     LocalDate endDate;
     private Set<ClothingItemDTO> clothingItems;
-
-
-    }
+}
 
 
 
