@@ -43,7 +43,7 @@ public class PaymentController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
-    //А ось чому треба використовувати ДТО (DTO)
+
     @PostMapping("/correct")
     public ResponseEntity<PaymentResponseDTO> createPaymentWithCorrectResponse(@RequestBody PaymentDTO payment) {
         try {

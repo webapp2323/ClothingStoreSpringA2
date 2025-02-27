@@ -22,10 +22,9 @@ public class PromotionController {
     private final PromotionService promotionService;
 
     @PostMapping("/add")
-    public Promotion addPromotion(@RequestBody PromotionDTO promotionDTO) {
+    public PromotionDTO addPromotion(@RequestBody PromotionDTO promotionDTO) { // Додано параметр
         try {
             if (promotionDTO.getStartDate().isAfter(promotionDTO.getEndDate())) {
-
                 throw new IllegalArgumentException("Дата закінчення не може бути раніше дати початку.");
             }
 
@@ -40,17 +39,59 @@ public class PromotionController {
             promotion.setDiscount(promotionDTO.getDiscount());
             promotion.setStartDate(promotionDTO.getStartDate().atStartOfDay());
             promotion.setEndDate(promotionDTO.getEndDate().atStartOfDay());
-
             promotion.setClothingItems(convertToEntity(promotionDTO.getClothingItems()));
 
             promotionService.addPromotion(promotion);
             log.info("Added new promotion: " + promotion);
-            return promotion;
+
+            return convertToDTO(promotion);
 
         } catch (IllegalArgumentException e) {
             log.error("Validation error: " + e.getMessage());
-            throw e;
+            throw e; // Пробросити виключення далі
+        } catch (Exception e) {
+            log.error("An unexpected error occurred: " + e.getMessage());
+            throw new RuntimeException("An unexpected error occurred while adding the promotion.");
         }
+    }
+
+
+    private PromotionDTO convertToDTO(Promotion promotion) {
+        PromotionDTO dto = new PromotionDTO();
+        dto.setId(promotion.getId());
+        dto.setName(promotion.getName());
+        dto.setDescription(promotion.getDescription());
+        dto.setType(promotion.getType());
+        dto.setDiscount(promotion.getDiscount());
+        dto.setStartDate(promotion.getStartDate().toLocalDate());
+        dto.setEndDate(promotion.getEndDate().toLocalDate());
+        dto.setClothingItems(convertToDTO(promotion.getClothingItems()));
+        return dto;
+    }
+
+    private Set<ClothingItemDTO> convertToDTO(Set<ClothingItem> clothingItems) {
+        return clothingItems.stream()
+                .map(item -> {
+                    ClothingItemDTO dto = new ClothingItemDTO();
+                    dto.setId(item.getId());
+                    dto.setName(item.getName());
+
+                    return dto;
+                })
+                .collect(Collectors.toSet());
+    }
+
+
+    private Set<ClothingItem> convertToEntity(Set<ClothingItemDTO> clothingItemsDTO) {
+        return clothingItemsDTO.stream()
+                .map(dto -> {
+                    ClothingItem item = new ClothingItem();
+                    item.setId(dto.getId());
+                    item.setName(dto.getName());
+
+                    return item;
+                })
+                .collect(Collectors.toSet());
     }
 
     @DeleteMapping("/delete/{id}")
@@ -66,6 +107,7 @@ public class PromotionController {
         log.info("Deleted promotion with ID: " + id);
     }
 
+//
     @PutMapping("/update/{id}")
     public Promotion updatePromotion(@PathVariable Long id, @RequestBody PromotionDTO promotionDTO) {
 
@@ -83,25 +125,14 @@ public class PromotionController {
         log.info("Updated promotion: " + updatedPromotion);
         return updatedPromotion;
     }
-
-    private Set<ClothingItem> convertToEntity(Set<ClothingItemDTO> clothingItemDTOs) {
-        return clothingItemDTOs.stream()
-                .map(dto -> new ClothingItem(
-                        dto.getId(),
-                        dto.getName(),
-                        Size.valueOf(dto.getSize().toUpperCase()), 
-                        dto.getPrice(),
-                        Brand.valueOf(dto.getBrand().toUpperCase()), 
-                        ClothingItemType.valueOf(dto.getType().toUpperCase()) // Удален лишний символ
-                ))
-                .collect(Collectors.toSet());
-    }
-
+//
+//
+//
     @GetMapping("/all")
     public List<Promotion> getAllPromotions() {
         return promotionService.getAllPromotions();
     }
-
+//
     @GetMapping("/id/{id}")
     public Promotion getPromotionById(@PathVariable Long id) {
         log.info("Identifying promotion using ID: " + id);

@@ -63,7 +63,7 @@ public class PromotionServiceImpl implements PromotionService {
     @Override
     public Promotion getPromotionById(Long id) {
         return promotionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Promotion not found for ID: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Promotion  for ID: " + id + " not found"));
     }
 
     public Set<ClothingItem> convertToEntity(Set<org.example.clothingstorespring.service.impl.ClothingItemDTO> clothingItemDTOs) {
