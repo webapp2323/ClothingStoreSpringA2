@@ -14,9 +14,9 @@ import java.math.BigDecimal;
 public class ClothingItemDTO {
     private Long id;
     private String name;
-    private String size; // Это строка, которую нужно будет преобразовать
+    private String size;
     private BigDecimal price;
-    private String brand; // Это строка, которую нужно будет преобразовать
-    private String type; // Это строка, которую нужно будет преобразовать
+    private String brand;
+    private String type;
 }
 
